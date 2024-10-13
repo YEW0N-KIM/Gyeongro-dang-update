@@ -245,7 +245,7 @@ public class BoardDAO implements BoardDAOI {
 	 
 	
 	@Override
-	 public int insertRoute(RouteBoard routeBoard) throws Exception {
+	 public int insertRoute(RouteBoard routeBoard) {
 	    return session.insert(namespace + "insertRoute", routeBoard);
 	}
 	
