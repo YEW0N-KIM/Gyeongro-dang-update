@@ -46,7 +46,7 @@ public class BoardDAO implements BoardDAOI {
 	@Override
 	public List<RouteBoard> selectRouteAll( int boardType ,   int currentPage){
 		
-		 //현재페이지정보,  전체레코드수      
+		//현재페이지정보,  전체레코드수      
 	  	int  pageSize  =   5;		
 		 int offset = (currentPage - 1) * pageSize;  
 	 	

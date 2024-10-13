@@ -1,179 +1,267 @@
 package com.acorn.project.board.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import java.util.List;
 
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.acorn.project.board.domain.Board;
+import com.acorn.project.board.domain.RouteBoard;
+import com.acorn.project.board.domain.SearchCondition;
+import com.acorn.project.board.repository.BoardDAOI;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/test.xml" , "file:src/main/webapp/WEB-INF/spring/**/root-context.xml"} )
 public class BoardServiceTest {
-
-	@Test
+	
+	@Autowired
+	BoardServiceI service;
+	
+	@Autowired
+	BoardDAOI dao;
+	
+//	@Test
 	public void testSelectTotalCount() {
-		fail("Not yet implemented");
+		int result = service.selectTotalCount(-1);
+		int check = dao.selectTotalCount(-1);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetBoardBytype() {
-		fail("Not yet implemented");
+		List<Board> result = service.getBoardBytype(-1, 1);
+		List<Board> check = dao.selectAll(-1, 1);
+		assertEquals(check, result);
+		
 	}
 
-	@Test
+//	@Test
 	public void testGetRouteBoard() {
-		fail("Not yet implemented");
+		List<RouteBoard> result = service.getRouteBoard(0, 1);
+		List<RouteBoard> check = dao.selectRouteAll(0, 1);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetBoardBycode() {
-		fail("Not yet implemented");
+		Board result = service.getBoardBycode("b0001");
+		Board check = dao.selectOne("b0001");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testUpdateViews() {
-		fail("Not yet implemented");
+		int result = service.updateViews("b0001");
+		assertEquals(1, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetBoardBytheme() {
-		fail("Not yet implemented");
+		List<Board> result = service.getBoardBytheme("0");
+		List<Board> check = dao.selectTheme("0");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testSelectUserCount() {
-		fail("Not yet implemented");
+		int result = service.selectUserCount("1");
+		int check = dao.selectUserCount("1");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetBoardByuser() {
-		fail("Not yet implemented");
+		List<Board> check = dao.selectUser("1", 1);
+		List<Board> result = service.getBoardByuser("1", 1);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testMyArchCount() {
-		fail("Not yet implemented");
+		int result = service.MyArchCount("1");
+		int check = dao.MyArchCount("1");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testSelectUserArch() {
-		fail("Not yet implemented");
+		List<Board> result = service.selectUserArch("1", 1);
+		List<Board> check = dao.selectUserArch("1", 1);
+		assertEquals(check,result);
 	}
 
-	@Test
+//	@Test
 	public void testMyLikeCount() {
-		fail("Not yet implemented");
+		int result = service.MyLikeCount("1");
+		int check = dao.MyLikeCount("1");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testSelectUserLike() {
-		fail("Not yet implemented");
+		List<Board> result = service.selectUserLike("1", 1);
+		List<Board> check = dao.selectUserLike("1", 1);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testMyComCount() {
-		fail("Not yet implemented");
+		int result = service.MyComCount("1");
+		int check = dao.MyComCount("1");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testSelectUserCom() {
-		fail("Not yet implemented");
+		List<Board> result = service.selectUserCom("1", 1);
+		List<Board> check = dao.selectUserCom("1", 1);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testMyPointCount() {
-		fail("Not yet implemented");
+		int result = service.MyPointCount("1");
+		int check = dao.MyPointCount("1");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testSelectUserPoint() {
-		fail("Not yet implemented");
+		List<Board> result = service.selectUserPoint("1", 1);
+		List<Board> check = dao.selectUserPoint("1", 1);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetInquByuser() {
-		fail("Not yet implemented");
+		List<Board> result = service.getInquByuser("1");
+		List<Board> check = dao.selectMyinqu("1");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testRegBoard() {
-		fail("Not yet implemented");
+		Board board = new Board(null,"u0001","n0001",null,null,"예시22","예시~~~~~~~~~",0,0,null,0,0,1,0);
+		int result = service.regBoard(board);
+		assertEquals(1, result);
 	}
 
-	@Test
+//	@Test
 	public void testModiBoard() {
-		fail("Not yet implemented");
+		Board board = new Board(null,"u0001","n0001",null,null,"예시","예시2~~~~~~~~~",0,0,null,0,0,1,0);
+		int result = service.regBoard(board);
+		assertEquals(1, result);
 	}
 
-	@Test
+//	@Test
 	public void testDelBoard() {
-		fail("Not yet implemented");
+		int result = service.delBoard("b0041");
+		assertEquals(1, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetList() {
-		fail("Not yet implemented");
+		SearchCondition search = new SearchCondition("title","예시",1);
+		List<Board> result = service.getList(search, 1);
+		List<Board> check = dao.getList(search, 1);
+		assertEquals(check, result);
+		
 	}
 
-	@Test
+//	@Test
 	public void testGetRouteList() {
-		fail("Not yet implemented");
+		SearchCondition search = new SearchCondition("writer","n0001",1);
+		List<RouteBoard> result = service.getRouteList(search, 1);
+		List<RouteBoard> check = dao.getRouteList(search, 1);
+		assertEquals(check,result);
 	}
 
-	@Test
+//	@Test
 	public void testGetListCount() {
-		fail("Not yet implemented");
+		SearchCondition search = new SearchCondition("title","예시",1);
+		int result = service.getListCount(search);
+		int check = dao.getListCount(search);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetRouteListCount() {
-		fail("Not yet implemented");
+		SearchCondition search = new SearchCondition("writer","n0001",1);
+		int result = service.getRouteListCount(search);
+		int check = dao.getRouteListCount(search);
+		assertEquals(check, result);
 	}
 
-	@Test
-	public void testSelectRoute() {
-		fail("Not yet implemented");
+//	@Test
+	public void testSelectRoute() throws Exception {
+		RouteBoard result = service.selectRoute("b0038");
+		RouteBoard check = dao.selectRoute("b0038");
+		assertEquals(check, result);
 	}
 
-	@Test
-	public void testInsertRoute() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testInsertRoute() {
+//		RouteBoard route = new RouteBoard();
+//	}
 
-	@Test
+//	@Test
 	public void testSelectMyBuyBoard() {
-		fail("Not yet implemented");
+		List<String> result = service.selectMyBuyBoard("u0001");
+		List<String> check = dao.selectMyBuyBoard("u0001");
+		assertEquals(check,result);
 	}
 
-	@Test
+//	@Test
 	public void testLikeCount() {
-		fail("Not yet implemented");
+		int result = service.likeCount("b0001");
+		int check = dao.likeCount("b0001");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testArchCount() {
-		fail("Not yet implemented");
+		int result = service.archCount("b0001");
+		int check = dao.archCount("b0001");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetRouteBoardBySearch() {
-		fail("Not yet implemented");
+		List<RouteBoard> result = service.getRouteBoardBySearch("5", "1", "0", 1);
+		List<RouteBoard> check = dao.getRouteBoardBySearch("5", "1", "0", 1);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetTotalCountBySearch() {
-		fail("Not yet implemented");
+		int result = service.getTotalCountBySearch("5", "1", "0");
+		int check = dao.getTotalCountBySearch("5", "1", "0");
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testGetHomeRouteData() {
-		fail("Not yet implemented");
+		List<RouteBoard> result = service.getHomeRouteData(5);
+		List<RouteBoard> check = dao.homeRouteData(5);
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testSelectInquiryCount() {
-		fail("Not yet implemented");
+		int result = service.selectInquiryCount();
+		int check = dao.selectInquiryCount();
+		assertEquals(check, result);
 	}
 
-	@Test
+//	@Test
 	public void testSelectInquiry() {
-		fail("Not yet implemented");
+		List<Board> result = service.selectInquiry(1);
+		List<Board> check = dao.selectInquiry(1);
+		assertEquals(check, result);
 	}
 
 }
