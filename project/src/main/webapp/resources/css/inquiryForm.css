@@ -1,0 +1,166 @@
+.wrap {
+	width: 100%;
+}
+
+.myInquiry {
+	font-size: 11pt;
+	color: rgb(149, 148, 148);
+	font-weight: 600;
+	float: right;
+	position: relative;
+	right: 20px;
+}
+
+/* 
+----------------------
+         문의 폼
+----------------------
+*/
+
+/* 문의폼_상단부 */
+.inquiry-container {
+	/* border: 1px solid rgb(255, 183, 183); */
+	margin: 20px auto;
+	margin-top: 30px;
+	width: 1000px;
+	text-align: center;
+}
+
+.inquiry-header {
+	/* border: 1px solid rgb(119, 203, 248); */
+	margin: 15px;
+	margin-bottom: 80px;
+}
+
+.inquiry-header h1, p {
+	margin-bottom: 30px;
+}
+
+.inquiry-header p {
+	color: rgb(36, 36, 36);
+}
+
+/* 필수입력사항 */
+.notice-required {
+	position: relative;
+	font-size: 10pt;
+	color: rgb(96, 96, 96);
+	left: -370px;
+}
+
+#notice-star {
+	color: rgb(167, 15, 15);
+	margin-right: 5px;
+}
+
+/* 문의폼_폼 */
+.inquiry-content {
+	border-top: 2px solid black;
+	margin-top: 5px;
+	margin-bottom: 200px;
+}
+
+fieldset {
+	border: none;
+	margin: 0 auto;
+	width: 800px;
+	position: relative;
+}
+
+fieldset div {
+	margin: 40px;
+	/* border: 1px solid black; */
+	/* align-content: center; */
+}
+
+label {
+	float: left;
+	/* align-content: center; */
+	font-weight: bold;
+	font-size: large;
+	/* color: rgb(125, 125, 125); */
+	position: absolute;
+	left: 20px;
+	margin: 10px;
+}
+
+input {
+	height: 50px;
+	border: 1px solid rgb(214, 210, 210);
+	border-radius: 10px;
+	width: 624px;
+	font-size: 13pt;
+	text-indent: 0.5cm;
+	margin-left: 15px;
+}
+
+.form-input-required {
+	position: relative;
+	left: -40px;
+	color: rgb(167, 15, 15);
+}
+
+input, textarea {
+	outline: none;
+	border: 1px solid rgb(214, 210, 210);
+	border-radius: 10px;
+}
+
+textarea {
+	font-size: 12pt;
+	padding: 20px;
+	resize: none;
+	width: 627px;
+}
+
+.content {
+	display: block;
+}
+
+.notice {
+	color: rgb(164, 164, 164);
+	font-size: 10pt;
+	margin-bottom: 50px;
+}
+
+.uploadImg {
+   width: 160px;
+   display: inline-block;
+   background-color: rgb(238, 248, 251);
+   border-radius: 20px;
+   overflow: hidden;
+   text-align: center;
+}
+
+.imgUploader {
+	font-size: 10pt;
+	height: 30px;
+	padding-top: 2.5px;
+	margin-left: 0px;
+}
+
+.cancle-button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #8c8c8c;
+	color: #fff;
+	cursor: pointer;
+}
+
+.submit-button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #8c8c8c;
+	color: #fff;
+	cursor: pointer;
+}
+
+.cancle-button:hover {
+	background-color: #8c8c8c8c;
+}
+
+.submit-button:hover {
+	background-color: #8c8c8c8c;
+}

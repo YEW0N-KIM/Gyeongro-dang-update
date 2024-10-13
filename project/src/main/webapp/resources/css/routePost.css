@@ -1,0 +1,537 @@
+/* 
+----------------------
+      변수 선언부
+----------------------
+*/
+:root{
+     /* 현재 버튼 컬러는 디폴트 */
+    --default-font-size: 16px;
+
+    --button-font-color: gray;
+    --point-font-color: gray;
+    
+    --point-1st-color: rgb(237, 237, 237);
+    --point-1st-darken-color: rgb(158, 155, 155);
+    --point-2nd-color: rgb(213, 223, 249);
+    --point-3rd-color: rgb(253, 236, 252);
+    --point-3rd-darken-color: rgb(255, 219, 254);
+
+    --default-divider: 1px solid rgb(168, 168, 168);
+   
+}
+
+button{
+    cursor: pointer;
+}
+
+/* tool-tip */
+.ql-tooltip{
+   display: none;
+}
+
+.ql-editor{
+   outline: none;
+}
+
+/* 
+----------------------
+         블러 
+----------------------
+*/
+
+.route-container-blur.purchased {
+    backdrop-filter: none;
+}
+
+.route-container-blur.not-purchased {
+    filter: blur(10px);
+    pointer-events: none;
+    user-select: none;
+    padding: 10px;
+}
+
+.alert-box{
+   margin: 0 auto;
+    border: 2px solid black;
+    width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 50px 30px;
+    background: white;
+    position: relative;
+    bottom: 500px;
+    font-size: 15pt
+}
+
+.button-for-register{
+   background: white;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    font-size: 12pt;
+    background: lightgray;
+    border-radius: 10px;
+}
+
+
+/* 
+----------------------
+        헤더
+----------------------
+*/
+.wrap {width: 100%; margin: 0 auto; user-select: none;}
+
+
+/* 
+----------------------
+       바디/구조
+----------------------
+*/
+
+.container{
+    /* border: 3px dotted rgb(147, 147, 147); */
+    margin: 75px auto;
+    width: 1100px;
+    /* height: 1200px; */
+    
+}
+
+/* 구분선 */
+.divider{
+    margin: 0 auto;
+    border: var(--default-divider);
+    width: 800px;
+}
+
+.divider.second{
+    margin: 50px auto;
+}
+
+/* 상단 버튼 */
+.btn-container{
+    margin-top: 30px;
+    text-align: right;
+    width: 1100px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.post-btn{
+    border-style: none;
+    border-radius: 5px;
+    color: var(--button-font-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 80px;
+    height: 40px;
+}
+
+.post-btn.right{
+    margin-right: 20px;
+}
+
+
+
+/* 
+----------------------
+  상단 이미지 & 타이틀
+----------------------
+*/
+
+.title-container{
+    /* border: 1px solid saddlebrown; */
+    /* margin-top: 30px; */
+    align-items: center;
+    height: 400px;
+    display: flex;
+}
+
+/* 이미지 영역 */
+.image-box{
+    /* border: 1px solid red; */
+    width: 50%;
+    text-align: center;
+}
+
+.image-box img{
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* 타이틀 영역 */
+.title-box{
+    /* border: 1px solid blue; */
+    width: 50%;
+    height: 300px;
+}
+
+.title-box div{
+    /* border: 1px solid salmon; */
+    margin-bottom: 10px;
+}
+
+.icon-region{
+    background-color: var(--point-1st-color);
+    border-radius: 5px;
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 3px;
+}
+
+/* 글제목 */
+.title-section{
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.writer-section p{
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.date-section{
+    /* border: 1px solid rgb(192, 172, 0); */
+    margin-top: 20px;
+}
+
+/* 테마 */
+.theme-section{
+    margin-top: 20px;
+    color: var(--point-font-color);
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+/* 좋아요&조회수 */
+.mark-section{
+    /* border: 1px solid red; */
+    display: flex;
+    margin-top: 20px;
+}
+
+.mark-section div{
+    /* border: 1px solid black; */
+    margin-right: 20px;
+}
+
+/* 포인트 */
+.point-section{
+    /* border: 1px solid pink; */
+    float: right;
+    margin-right: 20px;
+}
+
+.fa-brands.fa-product-hunt{
+    /* border: 1px solid red; */
+    /* color: var(--point-1st-darken-color); */
+    margin-top: 20px;
+}
+
+.price{
+    font-size: 18pt;
+    font-weight: bold;
+    color: rgb(139, 139, 139);
+
+}
+
+
+
+
+/* 
+----------------------
+    중간부-루트 영역
+----------------------
+*/
+
+.route-container{
+    /* border: 1px solid rgb(0, 161, 230); */
+    margin-top: 50px;
+    height: 980px;
+}
+
+/* 루트 - 인덱스 */
+.route-index{
+    /* border: 1px solid peru; */
+    height: 10%;
+    display: flex;
+}
+
+.index-button{
+    /* border: 3px dashed black; */
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: var(--point-1st-color);
+    margin-top: 55px;
+    margin-left: 10px;
+    width: 80px;
+    height: 45px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* 인덱스 클릭시 */
+.index-button.clicked {
+    background-color: var(--point-3rd-darken-color);
+    border: 3px solid black;
+    border-bottom: none;
+}
+
+/* 루트 - 컨텐츠 */
+.route-box{
+    /* border: 2px solid rgb(112, 111, 111);  */
+    border: 2px solid black;
+    background: white;
+    border-radius: 5px;
+    height: 90%;
+    user-select: none;
+}
+
+/* 루트 - 윗층 - 맵부분*/
+.route-upperside{
+    /* border: 1px dotted lime; */
+    margin: 30px;
+    height: 400px;
+    display: flex;
+    user-select: none;
+}
+
+.map{
+    border: 2px dotted black;
+    border-radius: 5px;
+    margin-right: 20px;
+    width: 60%;
+    height: 100%;
+}
+
+.map-place-list-section{
+    /* border: 1px solid brown; */
+    width: 40%;
+}
+
+
+.place-list{
+    border: 1.5px solid rgb(169, 168, 168);
+    border-radius: 5px;
+    margin-top: 10px;
+    height: 340px;
+    overflow-y: auto;
+}
+
+.markerDetail {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.markerInputs {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    border-bottom: 1px dotted gray;
+    padding-bottom: 5px;
+}
+
+.markerInputs>input {
+  width: 100%;
+  outline: 0;
+  border-width: 0 0 0px;
+  border-color: rgb(169, 168, 168);
+  pointer-events: none;
+  
+}
+
+/* 상세코스 - 리스트 */
+.markerTitle {
+   font-size: 12pt;
+   font-weight: 600;
+   color: #575656;
+   margin-bottom: 5px;
+}
+
+.markerExplain{
+   color: gray;
+}
+
+.number {
+    width: 20px;
+    margin: 0 20px;
+}
+
+/* 루트 - 아랫층 - 코멘트부분 */
+.route-lowerside{
+    /* border: 1px solid black; */
+    margin: 30px;
+    margin-top: 50px;
+}
+
+.day-comment{
+    border: 2px solid;
+    border-style: solid none;
+    height: 300px;
+    margin-top: 10px;
+    padding: 30px;
+    text-align: justify;
+    overflow-y: auto;
+}
+
+
+/* 
+----------------------
+   중간부 - 총평 영역
+----------------------
+*/
+
+.review-container{
+    /* border: 1px solid rgb(255, 9, 9); */
+    height: 500px;
+}
+
+.review-section{
+    background-color: var(--point-1st-color);
+    padding: 30px;
+    border-radius: 10px;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.review-container h2{
+    /* border: 1px solid red; */
+    margin-bottom: 10px;
+}
+
+
+/* 
+----------------------
+   하단부- 댓글 영역
+----------------------
+*/
+
+.comment-container h2{
+    margin-bottom: 10px;
+    text-indent: 10px;
+}
+
+.comment-section{
+    border-top: 2px solid black;
+    padding: 20px;
+    background-color: rgba(240, 238, 238, 0.491)
+}
+
+/* 댓글 없을 때 */
+#no-comments-message{
+    margin: 15px 0px 20px 20px;
+    padding: 0px 0px 20px 20px;
+}
+
+/* 개별 댓글 */
+.each-comment{
+    border-bottom: 1px dotted rgb(158, 157, 157);
+    padding-bottom: 20px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    width: 95%;
+}
+
+.each-comment:last-child {
+    border-bottom: none; 
+}
+
+.each-comment div{
+    /* border: none; */
+    margin: 10px;
+    display: block;
+    background: none;
+}
+
+.comment-nickname{
+    font-size: 13pt;
+    font-weight: bold;
+    color: rgb(37, 37, 37);
+}
+
+.comment-content{
+    padding: 0;
+    margin: 0;
+    text-align: justify;
+}
+
+.comment-date{
+    margin-top: 10px;
+    color: gray;
+}
+
+/* 댓글작성폼 */
+.write-comment-section{
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    background-color: white;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    width: 95%;
+    position: relative;
+}
+
+.write-comment-form{
+    border: none;
+    padding: 20px;
+    width: 100%;
+    height: 100px;
+    resize: none;
+    outline: none;
+}
+
+/* .add-comment-button{
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    width: 50px;
+    height: 30px;
+} */
+
+.add-comment-button.arrow{
+    border: 2px solid rgb(76, 76, 76);
+    border-radius: 50px;
+    background-color: transparent;
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.add-comment-button.arrow:hover{
+    /* background-color: var(--point-2nd-color); */
+    border: dashed;
+}
+
+/* 목록 돌아가기 버튼 */
+.return-to-list-button{
+    text-align: center;
+    margin: 100px auto ;
+    margin-bottom: 200px;
+}
+
+.return-to-list-button button{
+    border: none;
+    border-radius: 50px;
+    background-color: var(--point-1st-darken-color);
+    font-weight: bold;
+    width: 300px;
+    height: 50px;
+    cursor: pointer;
+}
+
+
+/* 
+----------------------
+   footer (임시)
+----------------------
+*/
+footer{
+    height: 300px;
+}

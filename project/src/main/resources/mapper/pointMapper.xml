@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.PointMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM pointtbl
+    </select>
+    
+    <select id="selectAll" resultType="Point">
+        SELECT *
+        FROM pointtbl     
+    </select>
+    
+    <select id="selectOne" parameterType="String" resultType="map">
+        SELECT p.*, b.boardTitle
+        FROM pointtbl p
+        LEFT JOIN boardtbl b ON p.boardCode = b.boardCode
+        WHERE p.userCode = #{userCode}
+    </select>
+
+    <insert id="buyBoard" parameterType="map">
+        INSERT INTO pointtbl (userCode, boardCode, pointStatus, pointAmount) 
+        VALUES (#{userCode}, #{boardCode}, 0, #{pointAmount})
+    </insert>
+    
+    <insert id="sellBoard" parameterType="map">
+    	INSERT INTO pointtbl (userCode, boardCode, pointStatus, pointAmount) 
+        VALUES (#{userCode}, #{boardCode}, 3, #{pointAmount})
+    </insert>
+    
+    <insert id="buyPoint" parameterType="map">
+        INSERT INTO pointtbl (userCode, pointStatus, pointAmount) 
+        VALUES (#{userCode}, 1, #{pointAmount})
+    </insert>
+    
+    <insert id="pointExchange" parameterType="map">
+        INSERT INTO pointtbl (userCode, pointStatus, pointAmount)
+        VALUES (#{userCode}, 2, #{pointAmount})
+    </insert>
+    
+    <select id="selectPointsWithinDateRange" parameterType="map" resultType="map">
+        SELECT p.*, b.boardTitle
+        FROM pointtbl p
+        LEFT JOIN boardtbl b ON p.boardCode = b.boardCode
+        WHERE p.userCode = #{userCode}
+        AND p.pointDate BETWEEN #{startDate} AND DATE_ADD(#{endDate}, INTERVAL 1 DAY)
+        ORDER BY p.pointDate
+    </select>
+</mapper>
+
+<!-- 
+0 : 게시글 구매
+1 : 포인트 충전
+2 : 포인트 환전
+3 : 게시글 판매 
+-->

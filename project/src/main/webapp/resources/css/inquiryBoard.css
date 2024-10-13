@@ -1,0 +1,87 @@
+
+/* 
+----------------------
+        구조
+----------------------
+*/
+
+.container {
+	position: relative;
+	width: 1100px;
+	margin: 0 auto;
+    padding-bottom: 150px;
+}
+
+.notice, .notice-detail{
+    text-align: center;
+    padding-top: 75px;
+}
+
+.notice-detail{
+    color: gray;
+    font-size: 10pt;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+.table-container{
+    border-top: 2px solid black;
+    padding: 80px 0 50px 0;
+    width: 1100px;
+}
+
+.inner-table{
+    margin: 0 auto;
+    width: 800px;
+}
+
+th{
+    border-bottom: 2px solid black;
+}
+
+th, td:not(.table-number, .table-title){
+    /* border: 1px solid yellow;  */
+    padding: 20px;
+    text-align: center;
+}
+
+.table-number{
+    text-align: center;
+}
+
+.table-title{
+    /* padding-left: 10px; */
+    padding-right: 150px;
+    font-weight: 600;
+    text-indent: 10px;
+}
+
+.table-title a{
+    color: black;
+}
+
+.table-title a:hover{
+    cursor: pointer;
+    color: rgb(66, 66, 66);
+    text-decoration: none;
+}
+
+
+tr:not(.table-top){
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.btn-write{
+    float: right;
+    position: relative;
+    right: 145px;
+    top: 50px;
+    width: 100px;
+    height: 40px;
+    border-style: none;
+    border-radius: 10px;
+    color: gray;
+    font-weight: bold;
+}
+
+

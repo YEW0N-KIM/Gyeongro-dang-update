@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.acorn.boardMapper">
+
+    <select id="selectTotalCount" resultType="int" parameterType="int">
+        SELECT COUNT(*) FROM boardtbl
+        <where>
+	            <if test="boardType != null">
+	                <if test="boardType &gt;= 0 and boardType &lt;= 6">
+	                    AND boardType = #{boardType}  AND boardType!=6
+	                </if>
+	                <if test="boardType == -1">
+	                    AND boardType &gt;= 1 AND boardType &lt;= 5  AND boardType!=6
+	                </if>
+	            </if>
+       </where>
+    </select>
+    
+
+    <select id="selectAll" resultType="Board"  parameterType="Map" >
+	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, 
+	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews 
+	    FROM boardtbl b 
+	    JOIN usertbl u ON b.userCode = u.userCode
+	      <where>
+	            <if test="boardType != null">
+	                <if test="boardType &gt;= 0 and boardType &lt;= 6">
+	                    AND b.boardType = #{boardType}
+	                </if>
+	                <if test="boardType == -1">
+	                    AND b.boardType &gt;= 1 AND b.boardType &lt;= 5
+	                </if>
+	            </if>
+	        </where>
+	        ORDER BY 
+	            b.boardWritedate DESC
+	        LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="selectInquiry" resultType="Board"  parameterType="Map" >
+	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, 
+	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews 
+	    FROM boardtbl b 
+	    JOIN usertbl u ON b.userCode = u.userCode
+	    WHERE boardType = 6
+	    ORDER BY b.boardWritedate DESC
+	    LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	<select id="selectInquiryCount" resultType="int" >
+	     SELECT COUNT(*) FROM boardtbl
+    	 WHERE boardType= 6;
+	</select>
+		
+	<select id="selectRouteAll" resultType="RouteBoard"  parameterType="Map" >
+	    SELECT u.nickname, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+	           DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion 
+	    FROM boardtbl b 
+	    JOIN usertbl u ON b.userCode = u.userCode
+	      <where>
+	            <if test="boardType != null">
+	                <if test="boardType &gt;= 0 and boardType &lt;= 6">
+	                    AND b.boardType = #{boardType}
+	                </if>
+	                <if test="boardType == -1">
+	                    AND b.boardType &gt;= 1 AND b.boardType &lt;= 5
+	                </if>
+	            </if>
+	        </where>
+	        ORDER BY 
+	            b.boardWritedate DESC
+	        LIMIT #{pageSize} OFFSET #{offset}
+	   </select>
+   		
+   <select id="selectOne" resultType="Board" parameterType="String">
+		SELECT 
+			u.nickname, b.userCode, b.boardCode,b.boardImgReal,b.boardTitle,b.boardContent, b.boardWritedate, 
+			b.boardViews,b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		WHERE b.boardCode = #{boardCode}
+   </select>
+   
+   <update id="updateView" parameterType="String">
+	   	UPDATE boardtbl
+		SET boardViews= boardViews+1
+		WHERE boardCode=#{boardCode}
+   </update>
+
+	<select id="selectTheme" resultType="Board" parameterType="String">
+		SELECT u.nickname,b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, b.boardViews 
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		WHERE b.boardTheme=#{boardTheme}
+		ORDER BY b.boardWritedate desc
+   </select>
+ 
+    <select id="selectMyCount" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (0,1,2,3,4,5)
+    </select>
+   
+   <select id="selectMy" resultType="Board" parameterType="map">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType
+		FROM boardtbl b 
+		JOIN usertbl u on b.userCode=u.userCode
+		WHERE u.userId=#{userId}
+		AND b.boardType IN (0,1,2,3,4,5)
+		ORDER BY b.boardWritedate desc
+		LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+	
+	
+	<select id="MyArchCount" resultType="int" parameterType="String">
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN archivetbl a 
+		ON b.boardCode = a.boardCode
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId = #{userId};
+    </select>
+
+   <select id="selectMyarchive" resultType="Board" parameterType="map">
+		SELECT 
+			b.boardCode, b.boardTitle,b.userCode, b.boardType,	
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate,
+			a.boardCode, a.userCode,
+			u.nickname, u.userId
+		FROM boardtbl b
+		JOIN archivetbl a 
+		ON b.boardCode = a.boardCode
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId =#{userId}
+		ORDER BY b.boardWritedate DESC
+		LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+    
+    <select id="MyLikeCount" resultType="int" parameterType="String">
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN liketbl a 
+		ON b.boardCode = a.boardCode
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId = #{userId};
+    </select>
+
+   <select id="selectMylike" resultType="Board" parameterType="map">
+		SELECT 
+			b.boardCode, b.boardTitle,b.userCode, b.boardType,	
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate,
+			a.boardCode, a.userCode,
+			u.nickname, u.userId
+		FROM boardtbl b
+		JOIN liketbl a 
+		ON b.boardCode = a.boardCode
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId =#{userId}
+		ORDER BY b.boardWritedate DESC
+		LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+    
+    <select id="MyComCount" resultType="int" parameterType="String">
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN commenttbl a 
+		ON b.boardCode = a.boardCode
+		JOIN usertbl u
+		ON a.userCode = u.userCode
+		WHERE userId = #{userId}
+		AND  b.boardType IN (0,1,2,3,4,5);
+    </select>
+
+   <select id="selectMycom" resultType="CommentMy" parameterType="map">
+		SELECT 
+			b.boardCode, b.boardTitle,b.userCode, b.boardWritedate, b.boardType,
+			c.commentContent, DATE_FORMAT(c.commentDate, '%Y-%m-%d') AS commentDate,
+			u.nickname, u.userId
+			from boardtbl b
+			join commenttbl c 
+			on b.boardCode = c.boardCode
+			join usertbl u
+			on c.userCode = u.userCode
+			where userId = #{userId}
+		ORDER BY c.commentDate DESC
+		LIMIT #{pageSize} OFFSET #{offset};
+    </select>
+    
+   <select id="MyPointCount" resultType="int" parameterType="String">
+		SELECT 
+		Count(*)
+		FROM boardtbl b
+		JOIN pointtbl p 
+		ON b.boardCode = p.boardCode
+		JOIN usertbl u
+		ON p.userCode = u.userCode
+		WHERE userId = #{userId}
+		And b.boardType IN (0,1,2,3,4,5)
+		And p.pointStatus=0
+    </select>
+
+   <select id="selectMypoint" resultType="Board" parameterType="map">
+		SELECT 
+			b.boardCode, b.boardTitle,b.userCode, b.boardType,	
+			DATE_FORMAT(p.pointDate, '%Y-%m-%d') AS pointDate,
+			p.boardCode, p.userCode,
+			u.nickname, u.userId
+		FROM boardtbl b
+		JOIN pointtbl p
+		ON b.boardCode = p.boardCode
+		JOIN usertbl u
+		ON p.userCode = u.userCode
+		WHERE userId =#{userId}
+		And p.pointStatus=0
+		ORDER BY b.boardWritedate DESC
+		LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+   
+   <select id="selectMyinqu" resultType="Board" parameterType="String">
+		SELECT 
+            b.boardCode, b.boardTitle, b.boardContent, b.boardWritedate, 
+            b.boardViews,b.boardType, u.nickname, u.userId,
+            CASE 
+                WHEN c.boardCode IS NOT NULL THEN 1
+                ELSE 0
+            END AS inquiry_check
+        FROM 
+            boardtbl b
+        LEFT JOIN 
+            usertbl u ON b.userCode = u.userCode
+        LEFT JOIN 
+            commenttbl c ON b.boardCode = c.boardCode
+        WHERE 
+        	u.userId=#{userId}
+        AND
+            b.boardType = 6
+   		ORDER BY b.boardWritedate DESC
+    </select>
+	
+	<insert id="insert" parameterType="Board">
+		INSERT INTO boardtbl
+			(userCode, boardImgOrigin, boardImgReal, boardTitle, boardContent, boardTheme, boardTourdays, boardWritedate, 
+			boardViews, boardPoint, boardType)
+		VALUES 
+		(#{userCode}, #{boardImgOrigin}, #{boardImgReal}, #{boardTitle}, #{boardContent},#{boardTheme},#{boardTourdays},now(),
+		#{boardViews},#{boardPoint},#{boardType})
+	</insert>
+	
+	<update id="update" parameterType="Board">
+		update boardtbl 
+		SET 
+			boardImgOrigin =#{boardImgOrigin},boardImgReal =#{boardImgReal},boardTitle=#{boardTitle}, boardContent=#{boardContent},
+			boardTheme=#{boardTheme},boardTourdays=#{boardTourdays}, boardType=#{boardType}
+		WHERE 
+			boardCode = #{boardCode}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM boardtbl 
+		WHERE boardCode = #{boardCode}
+	</delete>
+	
+	<sql id="search">
+		<if test="condition=='title'">
+			 WHERE boardTitle LIKE CONCAT('%', #{keyword}, '%') 
+			 And boardType IN (1,2,3,4,5) 
+		</if>	
+		<if test="condition=='writer'">
+			 WHERE nickname LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType IN (1,2,3,4,5) 
+		</if>
+		<if test="condition=='content'">
+			 WHERE boardContent LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType IN (1,2,3,4,5) 
+		</if>
+	</sql>
+	
+	<sql id="searchRoute">
+		<if test="condition=='title'">
+			 WHERE boardTitle LIKE CONCAT('%', #{keyword}, '%') 
+			 And boardType = 0 
+		</if>	
+		<if test="condition=='writer'">
+			 WHERE nickname LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType = 0
+		</if>
+		<if test="condition=='content'">
+			 WHERE boardContent LIKE CONCAT('%', #{keyword}, '%')
+			 And boardType = 0
+		</if>
+	</sql>
+	
+	<select id="selectSearch" resultType="Board" parameterType="SearchCondition">
+		SELECT 
+			u.nickname, u.userId, b.boardCode, b.boardTitle, b.boardContent, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews,b.boardType 
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		<include refid="search"/>
+		ORDER BY boardWritedate DESC
+		 LIMIT 15 OFFSET #{start}
+	</select>
+	
+	<select id="selectRouteSearch" resultType="RouteBoard" parameterType="SearchCondition">
+		SELECT
+			b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, 
+			DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, 
+			b.boardViews, b.boardPoint, b.boardType, b.boardRegion, b.days	
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		<include refid="searchRoute"/>
+		ORDER BY boardWritedate DESC
+		 LIMIT 5 OFFSET #{start}
+	</select>
+	
+	
+	
+	<select id="selectSearchCount" resultType="int" parameterType="SearchCondition">
+		SELECT count(*)
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		<include refid="search"/>
+		ORDER BY boardWritedate DESC
+	</select>
+	
+	<select id="selectSearchRouteCount" resultType="int" parameterType="SearchCondition">
+		SELECT count(*)
+		FROM boardtbl b
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		<include refid="searchRoute"/>
+		ORDER BY boardWritedate DESC
+	</select>
+	
+	
+	
+	<insert id="insertRoute" parameterType="RouteBoard">
+		INSERT INTO boardtbl
+			(userCode, boardImgOrigin, boardImgReal, boardTitle, boardContent, boardTheme, boardTourdays, boardWritedate, 
+			boardViews, boardPoint, boardType, boardRegion, days)
+		VALUES 
+		(#{userCode}, #{boardImgOrigin}, #{boardImgReal}, #{boardTitle}, #{boardContent},#{boardTheme},#{boardTourdays},now(),
+		#{boardViews},#{boardPoint}, 0, #{boardRegion}, #{days, typeHandler=com.acorn.project.board.domain.JsonListTypeHandler})
+	</insert>
+	
+	<select id="selectRoute" resultType="RouteBoard" parameterType="String">
+   		SELECT 
+			b.userCode, b.boardCode, u.nickname, b.boardImgReal, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardWritedate, 
+			b.boardViews, b.boardPoint, b.boardType, b.boardRegion, b.days	
+		FROM boardtbl b 
+		JOIN usertbl u
+		ON b.userCode = u.userCode
+		WHERE b.boardCode = #{boardCode}
+		ORDER BY b.boardWritedate desc
+   </select>
+   
+   <select id="selectMyBuyBoard" parameterType="String" resultType="String">
+   		select boardCode from pointtbl where userCode = #{userCode}
+   </select>
+   
+   <select id="LikeCount" parameterType="String" resultType="int">
+	   SELECT COUNT(*) 
+	   FROM liketbl 
+	   WHERE boardCode = #{boardCode}
+   </select>
+	
+   <select id="ArchCount" parameterType="String" resultType="int">
+	   SELECT COUNT(*) 
+	   FROM archivetbl 
+	   WHERE boardCode = #{boardCode}
+   </select>
+   
+   <sql id="searchRouteDiv">
+     <if test="region != null and region != ''">
+    AND b.boardRegion = #{region}
+</if>
+<if test="theme != null and theme != ''">
+    AND b.boardTheme = #{theme}
+</if>
+<if test="tourdays != null and tourdays != ''">
+    <choose>
+        <when test="tourdays == 1"> AND b.boardTourdays = 1 </when>
+        <when test="tourdays == 2"> AND b.boardTourdays &gt;= 2 AND b.boardTourdays &lt;= 4 </when>
+        <when test="tourdays == 3"> AND b.boardTourdays &gt;= 5 AND b.boardTourdays &lt;= 9 </when>
+        <when test="tourdays == 4"> AND b.boardTourdays &gt;= 10 AND b.boardTourdays &lt;= 19 </when>
+        <when test="tourdays == 5"> AND b.boardTourdays &gt;= 20 </when>
+    </choose>
+</if>
+
+</sql>
+
+ 
+ <select id="getRouteBoardBySearch" resultType="RouteBoard" parameterType="Map">
+    SELECT 
+        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardPoint,
+        DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion
+    FROM boardtbl b 
+    JOIN usertbl u ON b.userCode = u.userCode
+    WHERE b.boardType = 0
+    <include refid="searchRouteDiv"/>
+    ORDER BY b.boardWritedate DESC
+    LIMIT #{pageSize} OFFSET #{offset}
+</select>
+   
+   
+   <select id="getTotalCountBySearch" resultType="int" parameterType="Map">
+    SELECT COUNT(*)
+    FROM boardtbl b
+    JOIN usertbl u ON b.userCode = u.userCode
+    WHERE b.boardType = 0
+    <include refid="searchRouteDiv"/>
+</select>
+   
+<select id="homeRouteData" resultType="RouteBoard" parameterType="int">
+    SELECT 
+        u.nickname, b.boardImgReal, b.boardCode, b.boardTitle, b.boardContent, b.boardTheme, b.boardTourdays, b.boardPoint,
+        DATE_FORMAT(b.boardWritedate, '%Y-%m-%d') AS boardWritedate, b.boardViews, b.boardType, b.boardRegion    
+    FROM boardtbl b 
+    JOIN usertbl u ON b.userCode = u.userCode
+    WHERE b.boardType = 0 and b.boardRegion = #{boardRegion}
+    ORDER BY b.boardViews DESC
+    LIMIT 4
+</select>
+
+</mapper>

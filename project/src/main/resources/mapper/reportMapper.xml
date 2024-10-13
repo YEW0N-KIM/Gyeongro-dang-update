@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.reportMapper">
+	
+	<select id="selectAll" resultType="Report" >
+		SELECT *
+		FROM reporttbl
+	</select>
+	
+	<insert id="insert" parameterType="Report">
+		INSERT INTO
+			reporttbl(boardCode,reportingUserCode, reportedUserCode, reportDate, reportContent)
+		VALUES (#{boardCode}, #{reportingUserCode}, #{reportedUserCode}, now(), #{reportContent})
+	</insert>
+	
+	
+	<select id="selectReportCount" resultType="int">
+		SELECT COUNT(*)
+		FROM reporttbl
+	</select>
+	
+	
+	<select id="selectReport" resultType="ReportCheck">
+		SELECT 
+			r.boardCode, r.reportingUserCode, reportedUserCode, 
+			 DATE_FORMAT(r.reportDate, '%Y-%m-%d') AS reportDate,
+			b.boardTitle, u.userId as reportingUserId, m.userId as reportedUserId
+		FROM reporttbl r
+		JOIN boardtbl b
+		ON r.boardCode = b.boardCode
+		JOIN usertbl u
+		ON reportingUserCode = u.userCode
+		JOIN usertbl m
+		ON reportedUserCode = m.userCode
+	</select>
+</mapper>

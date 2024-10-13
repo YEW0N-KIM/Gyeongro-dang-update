@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.UserMapper">
+    <select id="count" resultType="int">
+        SELECT count(*) FROM  usertbl
+    </select>
+    
+    <select id="selectAll" resultType="User">
+        SELECT *
+        FROM usertbl     
+    </select>
+    
+    <select id="selectById" parameterType="String" resultType="User">
+    	SELECT *
+    	FROM usertbl
+    	WHERE userId = #{userId};
+	</select>
+	
+	<select id="selectByCode" parameterType="String" resultType="User">
+    	SELECT *
+    	FROM usertbl
+    	WHERE userCode = #{userCode};
+	</select>
+
+	<select id="checkNickname" parameterType="String" resultType="int">
+    	select count(*) from usertbl where nickname = #{nickname}
+	</select>
+	
+	<select id="checkUserTel" parameterType="String" resultType="int">
+    	select count(*) from usertbl where userTel = #{userTel}
+	</select>
+    
+   	<select id="findCode" parameterType="String" resultType="String">
+   		SELECT userCode from usertbl where userId = #{userId}
+   	</select>
+
+    <insert id="insert" parameterType="User">
+      INSERT INTO usertbl
+          (userId, userPw, userName, userBirth, userTel)
+      VALUES
+          (#{userId}, #{userPw}, #{userName}, #{userBirth}, #{userTel} )
+    </insert>
+  
+    
+    <update id="update" parameterType="User">
+       UPDATE usertbl
+       SET  userPw = #{userPw},
+            userName = #{userName},
+            nickname = #{nickname},
+            userBirth = #{userBirth},
+            userTel = #{userTel}
+       WHERE userId = #{userId}
+   </update>
+
+   <delete id="delete" parameterType="String">
+       DELETE FROM usertbl  WHERE userId = #{userId} 
+   </delete>
+   
+   <select id="login_check" parameterType="User" resultType="User">
+    SELECT * FROM usertbl WHERE userId=#{userId} AND userPw=#{userPw}
+	</select>
+
+
+	<select id="find_id" parameterType="map" resultType="String">
+		SELECT userId 
+		from usertbl
+		where userName = #{userName}
+		AND userTel = #{userTel}  
+	</select>
+	
+	<select id="find_pw" parameterType="map" resultType="String">
+		SELECT userPw 
+		from usertbl 
+		where userId = #{userId} 
+		AND userName = #{userName}
+		AND userTel = #{userTel}
+	</select>
+	
+	<update id="update_pw" parameterType="map">
+    	update usertbl 
+    	set userPw = #{userPw} 
+    	where userId = #{userId} 
+	</update>
+	
+	<update id="update_point" parameterType="map">
+    update usertbl
+    set userPoint = #{pointAmount}
+    where userCode = #{userCode}
+</update>
+
+
+
+</mapper>

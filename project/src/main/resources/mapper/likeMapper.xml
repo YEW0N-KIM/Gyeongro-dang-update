@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.likeMapper">
+	
+	<insert id="incrLike" parameterType="Like">
+		INSERT INTO
+			liketbl
+		VALUES (#{userCode}, #{boardCode})
+	</insert>
+	
+	<delete id="decrLike" parameterType="Like">
+		DELETE FROM
+			liketbl
+		WHERE userCode = #{userCode} AND boardCode =#{boardCode}
+	</delete>
+	
+	<select id="selectOne" resultType="Like" parameterType="Like">
+		SELECT *
+		FROM liketbl
+		WHERE userCode=#{userCode} AND boardCode =#{boardCode}
+	</select>
+	
+</mapper>

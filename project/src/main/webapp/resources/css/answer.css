@@ -1,0 +1,104 @@
+.wrap {width: 100%;}
+
+
+/* 
+----------------------
+        구조
+----------------------
+*/
+
+.container{
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    width: 1100px;
+    margin: 75px auto;
+    position: relative;
+}
+
+.inquiry-container{
+    /* border: 1px solid black; */
+    margin: 0 auto;
+    /* height: 1200px; */
+    width: 900px;
+}
+
+.divider{
+    border-top: 2px solid black;
+}
+
+.title{
+    /* border: 1px solid rebeccapurple; */
+    margin: 100px 0px 10px 28px;
+}
+
+.inner-box{
+    /* border: 1px solid rgb(211, 125, 125); */
+    margin: 40px 30px 120px 30px;
+}
+
+.inner-each-box{
+    /* border: 1px solid saddlebrown; */
+    margin: 20px;
+    margin-bottom: 50px;
+    font-size: 13pt;
+    
+}
+
+.inner-title{
+    float: left;
+    /* border: 1px solid red; */
+    font-weight: bolder;
+    width: 100px;
+}
+
+.inner-content{
+    /* border: 1px solid blue; */
+    margin-left: 150px;
+    text-align: justify;
+}
+
+.img-wrap{
+   text-align: center;
+}
+
+.upload-img{
+   margin-bottom: 30px;
+   width: 300px;
+}
+
+#content-answer{
+    margin-bottom: 150px;
+}
+
+
+/* 
+----------------------
+        버튼
+----------------------
+*/
+#btn-wrapper{
+    text-align: center;
+    margin-top: 100px;
+    
+	padding-bottom: 150px;
+}
+
+button{
+    font-size: 14pt;
+    /* font-weight: 600; */
+    color: rgb(81, 80, 80);
+    border-radius: 10px;
+    width: 300px;
+    height: 60px;
+    border-style: none;
+    cursor: pointer;
+}
+
+button:hover{
+   cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
+}

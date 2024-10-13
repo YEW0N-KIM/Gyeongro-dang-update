@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+.container {
+    width: 1100px;
+    margin: 0 auto;
+    margin-top: 75px;
+    /* border: 1px solid black; */
+}
+
+/* 행사 이름 - 제목라인 */
+.tour-info {
+    border-bottom: 1px solid black;
+    width: 80%;
+    padding: 30px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tour-addr {
+	display: flex;
+	
+	font-weight: bold;
+	color: #5c5c5c;
+	
+    border: 1px solid rgb(255, 159, 159);
+    background-color: rgb(255, 192, 192);
+    border-radius: 15px;
+    padding: 5px 10px 5px 10px;
+}
+
+.tour-title {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0px 15px 0px 15px;
+}
+
+/* 행사 정보 - 사진, 정보 */
+.tour-details {
+    width: 80%;
+    margin: 0 auto;
+    /* border-bottom: 1px solid black; */
+    /* border: 1px solid black; */
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.tour-details-img {
+    /* border: 1px solid black; */
+    display: inline-block;
+    position: relative;
+    /* background-color: rgb(240, 162, 60); */
+    padding: 30px 20px 20px 20px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.tour-details-img>img {
+    max-width: 100%;
+    height: auto;
+}
+
+.tour-details-text ul li strong {
+    float: left;
+    width: 120px;
+    /* background-color: #717171; */
+}
+
+/* 행사 상세정보 */
+.tour-description {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.tour-description h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+.tour-description p{
+	padding:10px;
+}
+
+/* 지도 정보 */
+.tour-map-custom {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.tour-map-custom h3 {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.tour-map-custom h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+.tour-map {
+    border: 1px solid black;
+    width: 80%;
+    height: 320px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.tour-details-info {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.tour-details-info ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tour-details-info ul li {
+    width: 50%; /* 두 칸씩 배치 */
+    margin-bottom: 10px;
+}
+
+.tour-details-info ul li strong {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+}
+
+/* 버튼 */
+.tour-btn {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.tour-btn button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #717171;
+    color: #fff;
+    cursor: pointer;
+}
+
+.tour-btn button:hover {
+    background-color: #73b7ff;
+}

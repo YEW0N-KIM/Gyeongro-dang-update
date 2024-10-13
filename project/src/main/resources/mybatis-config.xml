@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Board" type="com.acorn.project.board.domain.Board"/>
+		<typeAlias alias="RouteBoard" type="com.acorn.project.board.domain.RouteBoard"/>
+		
+		<typeAlias alias="Comment" type="com.acorn.project.comment.domain.Comment"/>
+		<typeAlias alias="CommentMy" type="com.acorn.project.comment.domain.Comment_my"/>
+		<typeAlias alias="Like" type="com.acorn.project.like.domain.Like"/>
+		<typeAlias alias="Archive" type="com.acorn.project.archive.domain.Archive"/>
+		<typeAlias alias="Report" type="com.acorn.project.report.domain.Report"/>
+		<typeAlias alias="ReportCheck" type="com.acorn.project.report.domain.ReportCheck"/>
+		<typeAlias alias="SearchCondition" type="com.acorn.project.board.domain.SearchCondition"/>
+		<typeAlias alias="User" type="com.acorn.project.user.domain.User"/>	
+		<typeAlias alias="Point" type="com.acorn.project.point.domain.Point"/>		
+	</typeAliases>
+	<typeHandlers>
+    	<typeHandler handler="com.acorn.project.board.domain.JsonListTypeHandler"/>
+	</typeHandlers>
+</configuration>

@@ -1,0 +1,66 @@
+.container {
+   position: relative;
+   width: 1100px;
+   margin: 0 auto;
+    padding-bottom: 150px;
+}
+.freeBoardForm-section{
+   margin-top: 75px;
+    width: 100%;
+    border-bottom: 3px solid black;
+    margin-bottom: 20px;
+}
+.freeBoardForm-section h2{
+   margin-bottom: 10px;
+}
+.custom-section{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+#boardType{
+    height: 30px;
+    width: 18%;
+    /* text-align: center; */
+    color: rgb(117, 117, 117);
+    font-size: 15px;
+}
+#boardTitle{
+    height: 30px;
+    width: 80%;
+    margin-left: auto;
+    font-size: 15px;
+    border-radius: 3px;
+    border: 1px solid rgb(147, 147, 147);
+    text-indent: 10px;
+}
+.toolbar-container{
+    width: 100%;
+}
+#editor{
+    height: 500px;
+    font-size: 15px;
+}
+#output {
+    display: block;
+    white-space: pre-wrap;
+}
+.freeBoardForm-file{
+    margin: 10px;
+}
+.freeBoardForm-btn {
+    text-align: center;
+    margin-top: 50px;
+}
+.freeBoardForm-btn button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8c8c8c;
+    color: #fff;
+    cursor: pointer;
+}
+.freeBoardForm-btn button:hover {
+    background-color: #8c8c8c8c;
+}

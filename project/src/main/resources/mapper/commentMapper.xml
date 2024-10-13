@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.acorn.commentMapper">
+	
+	<select id="selectCode" parameterType="String" resultType="Comment">
+		SELECT u.nickname, c.commentCode,c.boardCode, c.userCode,c.commentContent,c.commentDate
+		FROM commenttbl c
+		JOIN usertbl u
+		ON c.userCode = u.userCode
+		WHERE c.boardCode = #{boardCode}	
+		ORDER BY c.commentDate
+	</select>
+	
+	<select id="count" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM commenttbl
+		WHERE boardCode = #{boardCode}
+	</select>
+	
+	<insert id="insert" parameterType="Comment">
+		INSERT INTO 
+			commenttbl(boardCode, userCode, commentContent, commentDate)
+		VALUE 
+			( #{boardCode}, #{userCode}, #{commentContent},now())
+	</insert>
+	
+	<update id="update" parameterType="Comment">
+		UPDATE
+			commenttbl
+		SET commentContent = #{commentContent}
+		WHERE commentCode = #{commentCode}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM
+			commenttbl
+		WHERE commentCode = #{commentCode};
+	</delete>
+	
+	<select id="selectInquiry" parameterType="String" resultType="Comment">
+		SELECT u.nickname, c.commentCode,c.boardCode, c.userCode,c.commentContent,c.commentDate
+		FROM commenttbl c
+		JOIN usertbl u
+		ON c.userCode = u.userCode
+		WHERE c.boardCode = #{boardCode}	
+		And u.userId = 'admin'
+		ORDER BY c.commentDate
+	</select>
+	
+</mapper>

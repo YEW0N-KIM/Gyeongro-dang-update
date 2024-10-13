@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+.freeboard_page_img {
+   border-bottom: 1px solid black;
+}
+
+.freeboard_page_img img {
+   width: 20px;
+   height: 20px;
+   margin-right: 5px;
+}
+
+.freeboard_page_img div {
+   float: right;
+}
+
+
+/* 댓글 보기*/
+.count-comment {
+   margin-bottom: 5px;
+   margin-left: 5px;
+}
+
+.freeboard_page_comments {
+   border: 0.1px solid rgba(0, 0, 0, 0);
+   width: 100%;
+   background-color: rgb(236, 236, 236);
+   padding-bottom: 20px;
+}
+
+/* 좋아요, 스크랩 */
+.like-btn:hover {
+   text-decoration: none;
+}
+
+.like-btn i {
+   margin-right: 5px;
+}
+
+.scrap-btn i {
+   margin-right: 10px;
+}
+
+
+
+
+
+
+
+/* 댓글 없을 때 */
+#no-comments-message {
+   margin: 15px 0px 20px 20px;
+   padding: 10px 0px 10px 5px;
+}
+
+.comment {
+   /* border: 1px solid black; */
+   width: 95%;
+   /* height: auto;  */
+   padding: 10px 0px 20px 0px;
+   border-bottom: 1px dotted rgb(187, 187, 187);
+   /* test 2: solid -> dotted */
+   margin: 0 auto;
+   line-height: 30px;
+}
+
+/* test 1: 마지막 댓글은 구분선 없애기 */
+.comment:last-child {
+   border-bottom: none;
+}
+
+.comment_content {
+   line-height: 23px;
+   word-wrap: break-word;
+   white-space: pre-wrap;
+   text-align: justify;
+}
+
+.comment_name {
+   font-weight: bold;
+}
+
+.comment_date {
+   color: #7c7c7c;
+}
+
+
+
+/* 댓글작성 */
+.my_comment {
+   /* border: 1px solid black; */
+   width: 95%;
+   height: 120px;
+   /* margin: 10px; */
+   padding: 10px 10px 10px 10px;
+   margin: 0 auto;
+   margin-top: 20px;
+   background-color: rgb(255, 255, 255);
+}
+
+.my_comment input:focus {
+   outline: none;
+}
+
+.my_comment_sender {
+   font-weight: bold;
+   border: none;
+   width: 100%;
+}
+
+.my_comment_sender_btn {
+   float: right;
+   width: 50px;
+   height: 30px;
+   border-radius: 5px;
+   border: rgb(99, 99, 99);
+}
+
+.my_comment_sender_btn:hover {
+   /* background-color: #717171; */
+}
+
+.my_comment_content {
+   margin-top: 10px;
+   width: 100%;
+   height: 65px;
+   border: none;
+   resize: none;
+   border: none;
+   outline: none; /* test 3*/
+}
+
+.btnModi { /* 수정 */
+   padding: 3px 5px 3px 5px;
+   margin-right: 5px;
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   color: #fff;
+   cursor: pointer;
+}
+
+.btnSave {
+   padding: 3px 5px 3px 5px;
+   /* margin-right: 5px; */
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   /* background-color: #717171; */
+   color: #fff;
+   cursor: pointer;
+}
+
+.btnDel { /* 삭제 */
+   padding: 3px 5px 3px 5px;
+   /* margin-right: 5px; */
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   color: #fff;
+   cursor: pointer;
+}
+/* 뒤로가기 버튼 */
+.freeBoardForm-btn {
+   text-align: center;
+   margin-top: 50px;
+}
+
+.freeBoardForm-btn button {
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   color: #fff;
+   cursor: pointer;
+}
+
+.freeBoardForm-btn button:hover {
+   background-color: #8c8c8c8c;
+}
+
+.hidden {
+   display: none;
+}
+
+/* 댓글수정 */
+.edit_comment_input {
+   width: 790px;
+   height: 50px;
+   resize: none;
+   border: 1px solid lightgray; /* test 4 -- */
+   outline: none;
+   padding: 10px;
+}

@@ -1,0 +1,120 @@
+ 
+ .container{
+ 	margin: 0 auto;
+ }
+  /* 
+  ----------------------
+        상단 아이콘
+  ----------------------
+  */
+
+.iconContainer{
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 0 15px;
+    text-align: center;
+    width: 700px;
+    height: 300px;
+    position: relative;
+}
+
+
+
+.faqIcon{
+    border: 2px solid black;
+    display: inline-block;
+    margin: 0 10px;
+    width: 300px;
+    height: 130px;
+    /* background-color: rgb(230, 230, 230); */
+    border-radius: 10px;
+    position: relative;
+    top: 50px;
+    align-content: center;
+    cursor: pointer;
+}
+
+.faqIcon:hover{
+    background-color: rgb(238, 239, 239);
+}
+
+.faqIcon img{
+    width: 65px;
+    height: 65px;
+}
+
+.faqIcon h4{
+    margin-top: 7px;
+}
+
+#faqLetters{
+    text-align: center;
+}
+
+
+  /* 
+  ----------------------
+           FAQ
+  ----------------------
+  */
+.faq-container{
+    /* border: 1px solid rgb(206, 206, 206); */
+    width: 1000px;
+    height: 800px;
+    margin: 0px auto;
+    /* text-align: center; */
+}
+
+.faq-title{
+    height: 50px;
+    display: flex;
+    border-bottom: 2px solid rgb(202, 198, 198);
+}
+
+.faq-title div{
+    align-content: center;
+    /* border: 1px solid rgb(6, 98, 236); */
+    padding: 0px 50px;
+}
+
+.index-title{
+    /* margin: 0 auto; */
+    margin-left: 305px;
+}
+
+  
+  /* 
+  ----------------------
+   아코디언-자주묻는질문
+  ----------------------
+  */
+
+.question{
+    padding: 20px;
+    border-bottom: 1px solid rgb(223, 222, 222);
+    padding-left: 20px;
+}
+
+.question.on>span{
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+#acco-index{
+    margin-left: 28px;
+}
+
+#acco-title{
+    margin-left: 100px;
+}
+
+.answer{
+    display: none;
+    overflow: hidden;
+    background-color: rgba(243, 243, 243, 0.445);
+    border-radius: 5px;
+    padding: 30px;
+    padding-left: 190px;
+}

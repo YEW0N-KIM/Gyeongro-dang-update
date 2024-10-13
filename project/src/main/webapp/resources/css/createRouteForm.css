@@ -1,0 +1,700 @@
+/* 
+----------------------
+      변수 선언부
+----------------------
+*/
+:root{
+    /* 현재 버튼 컬러는 디폴트 */
+   --default-font-size: 16px;
+
+   --button-font-color: gray;
+   --point-font-color: gray;
+   
+   --point-1st-color: rgb(237, 237, 237);
+   --point-1st-darken-color: rgb(158, 155, 155);
+   --point-2nd-color: rgb(213, 223, 249);
+   --point-3rd-color: rgb(253, 236, 252);
+   --point-3rd-darken-color: rgb(255, 219, 254);
+
+   --default-divider: 1px solid rgb(168, 168, 168);
+  
+}
+
+button{
+   cursor: pointer;
+}
+
+
+/* 
+----------------------
+       헤더
+----------------------
+*/
+.wrap {width: 100%; margin: 0 auto;}
+
+
+/* 
+----------------------
+      바디/구조
+----------------------
+*/
+
+.container{
+   /* border: 3px dotted rgb(147, 147, 147); */
+   margin: 75px auto;
+   width: 1100px;
+   /* height: 1200px; */
+   
+}
+
+/* 구분선 */
+.divider{
+   margin: 0 auto;
+   border: var(--default-divider);
+   width: 800px;
+   margin-top: -40px;
+}
+
+.divider.second{
+   margin: 180px auto;
+   margin-bottom: 50px;
+}
+
+/* 
+----------------------
+ 상단 이미지 & 타이틀
+----------------------
+*/
+
+.title-container{
+   /* border: 1px solid saddlebrown; */
+   /* margin-top: 30px; */
+   align-items: center;
+   height: 400px;
+   display: flex;
+}
+
+/* 이미지 영역 */
+.image-box{
+   /* border: 1px solid red; */
+   width: 50%;
+   text-align: center;
+}
+
+.image-box img{
+   width: 400px;
+   height: 300px;
+}
+#img-container{
+    width: 400px;
+    height: 300px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    margin: 0 auto;
+    text-align: center;
+    align-content: center;
+}
+
+/* 타이틀 영역 */
+.title-box{
+   /* border: 1px solid blue; */
+   width: 50%;
+   height: 300px;
+   margin-top: -40px;
+}
+
+.title-box div{
+   /* border: 1px solid salmon; */
+   margin-bottom: 10px;
+}
+
+.icon-region{
+   border-radius: 5px;
+   font-weight: bold;
+   display: inline-block;
+}
+
+.icon-region select {
+    width: 80px;
+    height: 25px;
+    text-align: center;
+ }
+
+/* 글제목 */
+.title-section{
+   font-weight: bold;
+    /* display: inline-block; */
+}
+
+.title-section input{
+    width: 400px;
+    height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-indent: 8px;
+    padding: 20px 0px; 
+ }
+
+.writer-section p{
+   /* display: inline-block; */
+   margin-right: 5px;
+   font-weight: bold;
+}
+
+.date-section{
+   /* border: 1px solid rgb(192, 172, 0); */
+   margin-top: 20px;
+    font-weight: bold;
+    color: #5F5F5F;
+}
+.date-section input {
+    width: 30px;
+    border: none;
+    border-bottom: 1px solid;
+    text-align: center;
+    font-weight: bold;
+    color: #5F5F5F;
+}
+
+/* 테마 */
+.theme-section{
+   margin-top: 20px;
+   color: var(--point-font-color);
+   font-size: 14pt;
+   font-weight: bold;
+   display: inline-block;
+}
+.theme-section select{
+    width: 110px;
+    height: 25px;
+    text-align: center;
+ }
+
+/* 포인트 */
+.point-section {
+    /* border: 1px solid blue; */
+}
+.point-section-input{
+   align-content: center;
+   display: flex;
+   /* float: right;
+   margin-right: 150px; */
+   margin-top: 40px;
+
+}
+.point-section-input input{
+    margin-left: 10px;
+    border: none;
+    border-bottom: 1px solid;
+    font-size: 18px;
+    text-align: center;
+ }
+
+.point-section-length{
+    display: block;
+    font-size: 12px;
+    color: #5F5F5F;
+    background-color: #eeeeee;
+    width: 410px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 2px;
+ }
+
+.fa-brands.fa-product-hunt{
+   /* border: 1px solid red; */
+   /* color: var(--point-1st-darken-color); */
+}
+
+.price{
+   margin: 4px 0 0 5px;
+   width: 100px;
+   height: 20px;
+   font-size: 10px;
+   font-weight: bold;
+   color: rgb(139, 139, 139);
+
+}
+
+
+
+
+
+
+
+/* 
+----------------------
+   중간부-루트 영역
+----------------------
+*/
+
+.route-container{
+   /* border: 1px solid rgb(0, 161, 230); */
+   margin-top: 50px;
+   height: 1010px;
+}
+
+/* 루트 - 인덱스 */
+.route-index{
+   /* border: 1px solid peru; */
+   height: 10%;
+   display: flex;
+}
+
+.newIndex-button {
+   display:flex;
+   
+}
+.index-button{
+   /* border: 3px dashed black; */
+   border: 2px solid rgb(0, 0, 0);
+   border-radius: 5px;
+   background-color: var(--point-1st-color);
+   margin-top: 59px;
+   margin-left: 10px;
+   width: 80px;
+   height: 45px;
+   text-align: center;
+   cursor: pointer;
+}
+
+.add-button{
+   /* border: 3px dashed black; */
+   border: 2px solid rgb(0, 0, 0);
+   border-radius: 5px;
+   background-color: var(--point-1st-color);
+   margin-top: 59px;
+   margin-left: 10px;
+   width: 80px;
+   height: 45px;
+   text-align: center;
+   cursor: pointer;
+}
+
+
+.add-button button {
+   width: 100%;
+   height: 100%;
+   font-size: 30px;
+   box-sizing: border-box;
+}
+
+/*  클릭 */
+.index-button:last-child {
+   background-color: var(--point-3rd-darken-color);
+   border: 3px solid black;
+   border-bottom: none;
+} 
+
+/* 루트 - 컨텐츠 */
+.route-box{
+   /* border: 2px solid rgb(112, 111, 111);  */
+   border: 2px solid black;
+   background: white;
+   border-radius: 5px;
+   height: 100%;
+}
+
+/* 루트 - 윗층 - 맵부분*/
+.route-upperside{
+   /* border: 1px dotted lime; */
+   width: 100%;
+   height: 450px;
+}
+
+.map{
+   border: 2px dotted black;
+   border-radius: 5px;
+   margin: 20px auto;
+   width: 95%;
+   height: 100%;
+}
+
+/* 루트 - 아랫층 - 코멘트부분 */
+.route-lowerside{
+   /* border: 1px solid black; */
+   width: 95%;
+   margin: 30px auto;
+   margin-top: 50px;
+   display: flex;
+}
+
+.map-place-list-section{
+   /* border: 1px solid brown; */
+   width: 48%;
+   margin: 0 auto;
+}
+
+.place-list{
+   border: 1.5px solid rgb(169, 168, 168);
+   border-radius: 5px;
+   margin-top: 10px;
+   height: 370px;
+   overflow-y: auto;
+}
+
+.day-comment-list{
+   width: 48%;
+   margin: 0 auto;
+}
+
+.day-comment{
+   border: 2px solid;
+   border-style: solid none;
+   height: 370px;
+   margin-top: 10px;
+   padding: 20px;
+   text-align: justify;
+}
+
+
+/* 
+----------------------
+  중간부 - 총평 영역
+----------------------
+*/
+
+.review-container{
+   height: 500px;
+   position: absolute;
+   top: 1800px;
+   width: 1100px;
+}
+
+.review-container h2{
+   margin-bottom: 15px;
+}
+
+
+/* 목록 돌아가기 버튼 */
+.return-to-list-button{
+   text-align: center;
+   margin: 180px auto;
+   margin-top: 1200px; 
+}
+
+.return-to-list-button button{
+
+}
+
+/* 코멘트*/
+#dayPlanForm{
+   width: 100%;
+}
+.commentTextarea{
+   width: 100%;
+   height: 330px;
+   border: transparent;
+   resize: none;
+   outline: none;
+   font-size: 12pt;
+}
+
+/* 버튼 */
+#dayBtn{    
+   display: block;
+   margin: auto;
+   width: 80px;
+   margin-top: 5px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #e5e2e2;
+    margin-top: 5px;
+    border: 0.2px solid;
+    color: #000000;
+    
+}
+
+
+.btn-container{
+   margin-top: 350px;
+   text-align: right;
+   width: 1100px;
+    text-align: center;
+
+}
+
+.btn-container button:hover{
+   background-color: #8c8c8c8c;
+}
+
+.cancle-button {
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   color: #fff;
+   cursor: pointer;
+   margin: 0 auto;
+}
+
+.submit-button {
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   background-color: #8c8c8c;
+   color: #fff;
+   cursor: pointer;
+   margin: 0 auto;
+}
+
+
+.uploadImg {
+   width: 400px;
+   height: 300px;
+   display: inline-block;
+   /* border: 2px dotted rgb(254, 189, 232); */
+   background-color: rgb(238, 248, 251);
+   border-radius: 10px;
+   overflow: hidden;
+   text-align: center;
+   
+
+}
+
+
+.imgUploader {
+   font-size: 10pt;
+   height: 30px;
+   padding-top: 2.5px;
+   margin-left: 0px;
+}
+/* 
+   -----------------
+        map css 
+   -----------------
+*/
+.toolTab{ position:relative; top: -470px; left: 25.5px; bottom:0; width: 55px; z-index: 2; background-color: rgb(28, 39, 54);padding-top: 20px; height: 100%; border-radius: 5px 0px 0px 5px;}
+.toolBtn{margin: auto; text-align: center;  width: 70%; margin: 10px auto; padding: 1px; }
+.toolBtn>button{ background-color: transparent; color: rgb(73, 101, 119); margin: 0 auto; text-align: center; border: transparent; font-size: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+.toolBtn .btnImg{ width: 90%;height: 100%; border-radius: 5px; margin: 0 auto; margin-bottom: 3px; padding: 2px 0;} 
+.toolBtn:hover .btnImg{background-color: rgb(91, 181, 195); color: #fff; }
+.toolBtn:hover button {color: #fff;}
+.toolBtn img{width: 70%;}
+
+#searchTab { position:relative; top: -928px; left: 70.5px; bottom:0; width:300px; margin:10px 0  0 10px; padding:5px;overflow-y:auto;background:rgba(255, 255, 255); font-size:12px; transform: translateX(0%); height:99%;
+transition: opacity 0.5s, transform 0.5s; z-index: 1;}
+.bg_white {background:#fff;}
+#searchTab hr {display: block; height: 1px; border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+#searchTab .option{text-align: center; height: 50px; width: 100%; align-content: center;}
+#searchTab form{border: 1px solid black; height: 40px; border-radius: 5px;}
+#searchTab .option input{ width: 80%; height: 40px; padding: 0;  margin: 0; border: none; text-indent: 20px; background-color: transparent;}
+#searchTab .option button{ width: 18%; height: 40px; padding: 0; margin: 0; border: none; background-color: transparent;}
+
+
+#placesList li {list-style: none;}
+#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
+#placesList .item span {display: block;margin-top:4px;}
+#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+#placesList .item .info{padding:10px 0 10px 15px;}
+#placesList .info .gray {color:#8a8a8a;}
+#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
+#placesList .info .tel {color:#009900;}
+#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;}
+#pagination {margin:10px auto;text-align: center;}
+#pagination a {display:inline-block;margin-right:10px;}
+#pagination .on {font-weight: bold; cursor: default;color:#777;}
+
+
+.addDayBtn {
+   width: 100px;
+   height: 100%;
+}
+.positionInfo {
+   display: flex;
+   align-items: center; /* 세로 중앙 정렬 */
+   margin: 10px 0; /* 아래쪽 간격 */
+}
+
+.number {
+   width: 30px; /* 숫자 부분의 고정 너비 */
+   margin: 0 20px;
+   /* border: 1px solid black; */
+}
+
+.inputs {
+   display: flex;
+   flex-direction: column; /* 입력 요소들을 세로로 배치 */
+   width: 400px;
+   border-bottom: 1px solid;
+}
+
+.inputs input {
+   margin-bottom: 5px; /* 입력 요소 사이 간격 */
+   outline: 0;
+     border: none;
+     border-color: rgb(169, 168, 168);
+}
+
+
+/* 상세코스 - 리스트 */
+.markerTitle {
+   font-size: 12pt;
+   font-weight: 600;
+   color: #575656;
+   margin-bottom: 5px;
+}
+
+.explain{
+   color: gray;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 사용설명 모달창 */
+.route-modal {
+    text-align: center;
+    margin-right: -200px;
+    position: relative;
+    top: -50px;
+    right: -900px;
+    width: 50px;
+}
+#btn-modal{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed; /* 'fixed'로 변경하여 화면 전체에 고정 */
+    left: 0;
+    top: 0;
+    display: none; /* 초기에는 숨김 */
+    align-items: center;
+    justify-content: center;
+    background: rgba(71, 58, 58, 0.25);
+    z-index: 1000; /* 높은 z-index 값 추가 */
+}
+#modal .modal-window {
+    background: white;
+    width: 890px;
+    height: 600px;
+    position: relative;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+#modal .title {
+    padding-left: 10px;
+    display: inline;
+    color: rgb(45, 45, 45);
+}
+#modal .title h2 {
+    display: inline;
+    line-height: 2;
+}
+#modal .close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    color: rgb(45, 45, 45);
+    padding-top: 10px;
+}
+
+#modal .content {
+    height: calc(100% - 40px); /* Adjust based on header and padding */
+    overflow-y: auto;
+}
+
+#modal .content img {
+    width: 100%;
+    height: auto;
+}     
+.img-color {
+    display: none;
+}
+
+#btn-madal {
+   margin-top: 50px;
+    margin-right: -200px;
+}
+#btn-modal:hover .img-color {
+    display: inline;
+}
+
+#btn-modal:hover .img-black {
+    display: none;
+}
+#modal {
+    z-index: 1000; /* 모달을 최상단에 배치 */
+}
+
+#modal.modal-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed; /* 'fixed'로 변경하여 화면 전체에 고정 */
+    left: 0;
+    top: 0;
+    display: none; /* 초기에는 숨김 */
+    align-items: center;
+    justify-content: center;
+    background: rgba(71, 58, 58, 0.25);
+    z-index: 1000; /* 높은 z-index 값 추가 */
+}
+#modal .modal-window {
+    background: white;
+    width: 890px;
+    height: 600px;
+    position: relative;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+#modal .title {
+    padding-left: 10px;
+    display: inline;
+    color: rgb(45, 45, 45);
+}
+#modal .title h2 {
+    display: inline;
+    line-height: 2;
+}
+#modal .close-area {
+    display: inline;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    color: rgb(45, 45, 45);
+    padding-top: 10px;
+}
+
+#modal .content {
+    height: calc(100% - 40px); /* Adjust based on header and padding */
+    overflow-y: auto;
+}
+
+#modal .content img {
+    width: 100%;
+    height: auto;
+}     
+
+#btn-madal {
+    margin-top: 50px;
+    margin-right: -200px;
+}
+#btn-modal:hover .img-color {
+    display: inline;
+}
+
+#btn-modal:hover .img-black {
+    display: none;
+}
+
+#modal {
+    z-index: 1000; /* 모달을 최상단에 배치 */
+}
+
+/* 인풋 박스 z-index 수정 */
+.title-section input {
+    z-index: 999; /* 모달보다 낮은 값으로 설정 */
+    position: relative; /* z-index 적용을 위해 position 속성 추가 */
+}

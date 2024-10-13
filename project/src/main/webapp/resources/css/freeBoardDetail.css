@@ -1,0 +1,149 @@
+.container {
+   position: relative;
+   width: 1100px;
+   margin: 0 auto;
+   padding-bottom: 150px;
+}
+
+/* 사이드네비 */
+.side_menu {
+   position: relative;
+    /*height: 페이징 한 후 결정 */ 
+}
+.side_menu_set {
+   position: fixed;
+    width: 210px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+   margin-top: 25px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.25);
+}
+.side_menu_set h3 {
+   font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1.5px solid black;
+    padding-bottom: 3px;
+}
+.side_menu li {   
+   font-size: 14px;
+   font-weight: 600;
+   margin-bottom: 10px;
+   cursor: pointer;
+}
+.side_menu_set ul {
+   margin: 15px 0 10px 10px;
+}
+
+
+/* 글 상세 큰 틀 */
+.content_wrap {
+      position: relative;
+    width: 850px;
+    margin-left: 250px;
+    margin-top: 85px;
+}
+
+.content {
+   pointer-events: none;
+}
+
+.boardType {
+   padding-bottom: 5px;
+}
+
+.report {
+   width: 20px;
+   height: 20px;
+   display: inline-block;
+   float: right;
+   text-align: center;
+   /* border: 1px solid black; */
+   position: relative;
+   top: -30px;
+   right: 20px;
+}
+
+.report button {
+   padding: 2px 10px 2px 10px;
+   border: none;
+   cursor: pointer;
+   width: 20px;
+   height: 20px;
+   border-radius: 5px;
+   background-color: #ffffff;
+   margin-right: 15px;
+}
+
+.report button .img-red {
+   display: none;
+}
+
+.report button:hover .img-red {
+   display: inline;
+}
+
+.report button:hover .img-black {
+   display: none;
+}
+
+.report img {
+   width: 20px;
+   height: 20px;
+   /* margin-right: 5px; */
+   /* border: 1px solid black; */
+}
+
+.freeboard_page_title {
+   /* border: 1px solid black; */
+   width: 100%;
+   height: 80px;
+   border-top: 1px solid rgb(80, 80, 80);
+   padding-top: 5px;
+   border-bottom: 1px solid rgb(80, 80, 80);
+   padding-bottom: 5px;
+}
+
+.title {
+   font-size: 20px;
+   font-weight: bold;
+   margin-bottom: 5px;
+}
+
+.nickname {
+   font-size: 15px;
+   margin-left: 5px;
+}
+
+.nickname img {
+   width: 15px;
+   height: 15px;
+}
+
+.writeDatw {
+    font-size: 12px;
+    margin: 5px 10px 5px 5px;
+    color: #7c7c7c;
+    display: inline-block;
+}
+
+.boardViews {
+   font-size: 12px;
+   color: #7c7c7c;
+   display: inline-block;
+}
+
+.freeboard_page {
+   padding-bottom: 20px;
+}
+
+/* 글 내용 */
+.freeboard_page_content {
+   /* border: 1px solid black; */
+   width: 100%;
+   min-height: 300px;
+   height: auto;
+   overflow: hidden;
+   text-align: center;
+   padding-bottom: 20px;
+}

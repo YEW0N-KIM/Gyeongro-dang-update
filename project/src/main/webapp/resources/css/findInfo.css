@@ -1,0 +1,115 @@
+    @charset "UTF-8";
+.container {
+    /*border: 1px solid #000000;*/
+    margin: 75px auto;
+    width: 800px; 
+    box-shadow: 2px 10px 20px rgba(22,20,19,0.4);
+    border-radius: 10px;
+}
+
+#IdBtn, #PwBtn {
+    width: 50%;
+    height: 50px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.btnContainer {
+    text-align: center;
+    display: flex;
+}
+
+.form-container {
+    border: 1px solid #ccc;
+    border-top: none;
+    margin-bottom: 25px;
+    padding: 50px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /* background-color: #f9f9f9; */
+}
+.form-title{
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+    border-bottom: 2px solid #000000;
+}
+
+.form-title-mypage{
+    padding: 0px 10px 20px 0px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-bottom: 2px solid #000000;
+    text-align: right;
+}
+.form-title-mypage a{
+    border: 1px solid #c1c1c1;
+    padding: 5px;
+    border-radius: 10px;
+    
+}
+a{text-decoration: none; color: #000000;}
+a:visited{color: #000000;}
+.input-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.from-table-tr1{
+    height: 100px;
+}
+.from-table-tr2{
+    height: 60px;
+}
+
+.input-table td {
+    border: 1px solid #d6d6d6;
+    border-right: none;
+    border-left: none;
+}
+
+.input-box {
+    width: 80%;
+    height: 30px;
+    margin: 5px 10px 5px 0px;
+    border-radius: 10px;
+    border: 1px solid #d5d5d5 ;
+    /* border: none;
+    border-bottom: 2px solid rgb(77, 77, 77); */
+    text-indent: 10px;
+    
+}
+
+.form-label {
+    font-weight: bold;
+    width: 30%;
+    text-align: center;
+    padding: 15px;
+    background-color: #f6f6f6;
+}
+
+.form-input {
+    padding: 15px;
+    width: 80%;
+    color: #717171;
+}
+
+.btn-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn-register,
+.btn-cancel {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #717171;
+    color: #fff;
+    cursor: pointer;
+}
