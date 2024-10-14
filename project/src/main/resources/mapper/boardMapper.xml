@@ -391,22 +391,22 @@
    
    <sql id="searchRouteDiv">
      <if test="region != null and region != ''">
-    AND b.boardRegion = #{region}
-</if>
-<if test="theme != null and theme != ''">
-    AND b.boardTheme = #{theme}
-</if>
-<if test="tourdays != null and tourdays != ''">
-    <choose>
-        <when test="tourdays == 1"> AND b.boardTourdays = 1 </when>
-        <when test="tourdays == 2"> AND b.boardTourdays &gt;= 2 AND b.boardTourdays &lt;= 4 </when>
-        <when test="tourdays == 3"> AND b.boardTourdays &gt;= 5 AND b.boardTourdays &lt;= 9 </when>
-        <when test="tourdays == 4"> AND b.boardTourdays &gt;= 10 AND b.boardTourdays &lt;= 19 </when>
-        <when test="tourdays == 5"> AND b.boardTourdays &gt;= 20 </when>
-    </choose>
-</if>
+    	AND b.boardRegion = #{region}
+	</if>
+	<if test="theme != null and theme != ''">
+	    AND b.boardTheme = #{theme}
+	</if>
+	<if test="tourdays != null and tourdays != ''">
+	    <choose>
+	        <when test="tourdays == 1"> AND b.boardTourdays = 1 </when>
+	        <when test="tourdays == 2"> AND b.boardTourdays &gt;= 2 AND b.boardTourdays &lt;= 4 </when>
+	        <when test="tourdays == 3"> AND b.boardTourdays &gt;= 5 AND b.boardTourdays &lt;= 9 </when>
+	        <when test="tourdays == 4"> AND b.boardTourdays &gt;= 10 AND b.boardTourdays &lt;= 19 </when>
+	        <when test="tourdays == 5"> AND b.boardTourdays &gt;= 20 </when>
+	    </choose>
+	</if>
 
-</sql>
+	</sql>
 
  
  <select id="getRouteBoardBySearch" resultType="RouteBoard" parameterType="Map">

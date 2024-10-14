@@ -34,7 +34,7 @@ public class BoardDAOTest {
 	private Board mock = new Board();
 	private RouteBoard Rmock = new RouteBoard();
 
-//	@Test
+	@Test
 	public void testSelectTotalCount() {
 		int boardType = 0;
 		when(session.selectOne(namespace+"selectTotalCount", boardType)).thenReturn(10);
@@ -44,7 +44,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"selectTotalCount", boardType);
 	}
 
-//	@Test
+	@Test
 	public void testSelectAll() {
 		int boardType = 0;
 		int currentPage = 1;
@@ -66,7 +66,7 @@ public class BoardDAOTest {
 	
 	
 
-//	@Test
+	@Test
 	public void testSelectRouteAll() {
 		int boardType = 0;
 		int currentPage = 1;
@@ -87,7 +87,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectRouteAll", info);
 	}
 
-//	@Test
+	@Test
 	public void testSelectOne() {
 		String board_code = "b0005";
 		when(session.selectOne(namespace+"selectOne", board_code)).thenReturn(mock);
@@ -100,7 +100,7 @@ public class BoardDAOTest {
 		
 	}
 
-//	@Test
+	@Test
 	public void testUpdateViews() {
 		String boardCode = "b0001";
 		when(session.update(namespace+"updateView", boardCode)).thenReturn(10);
@@ -110,18 +110,18 @@ public class BoardDAOTest {
 		verify(session).update(namespace+"updateView",boardCode);
 	}
 
-//	@Test
+	@Test
 	public void testSelectTheme() {
 		String boardTheme = "0";
 		when(session.selectList(namespace+"selectTheme",boardTheme)).thenReturn(Arrays.asList(mock));
 		List<Board> result = dao.selectTheme(boardTheme);
 		
-		assertEquals(1, result);
+		assertEquals(1, result.size());
 		verify(session).selectList(namespace+"selectTheme", boardTheme);
 		
 	}
 
-//	@Test
+	@Test
 	public void testSelectUserCount() {
 		String user_id = "1";
 		when(session.selectOne(namespace+"selectMyCount", user_id)).thenReturn(10);
@@ -131,7 +131,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"selectMyCount", user_id);
 	}
 
-//	@Test
+	@Test
 	public void testSelectUser() {
 		String userId = "1";
 		int currentPage = 1;
@@ -152,7 +152,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectMy", info);
 	}
 
-//	@Test
+	@Test
 	public void testMyArchCount() {
 		String userId = "1";
 		when(session.selectOne(namespace+"MyArchCount", userId)).thenReturn(10);
@@ -162,7 +162,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"MyArchCount", userId);
 	}
 
-//	@Test
+	@Test
 	public void testSelectUserArch() {
 		String userId = "1";
 		int currentPage = 1;
@@ -180,7 +180,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectMyarchive", info);
 	}
 
-//	@Test
+	@Test
 	public void testMyLikeCount() {
 		String userId = "1";
 		when(session.selectOne(namespace+"MyLikeCount", userId)).thenReturn(10);
@@ -190,7 +190,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace + "MyLikeCount", userId);
 	}
 
-//	@Test
+	@Test
 	public void testSelectUserLike() {
 		String userId = "1";
 		int currentPage = 1;
@@ -208,7 +208,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectMylike", info);
 	}
 
-//	@Test
+	@Test
 	public void testMyComCount() {
 		String userId = "1";
 		when(session.selectOne(namespace+"MyComCount", userId)).thenReturn(10);
@@ -217,7 +217,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"MyComCount", userId);
 	}
 
-//	@Test
+	@Test
 	public void testSelectUserCom() {
 		String userId = "1";
 		int currentPage = 1;
@@ -232,12 +232,12 @@ public class BoardDAOTest {
 		when(session.selectList(namespace+"selectMycom", info)).thenReturn(Arrays.asList(mock));
 		List<Board> result = dao.selectUserCom(userId, currentPage);
 		assertEquals(1, result.size());
-		verify(session).selectOne(namespace+"selectMycom", info);
+		verify(session).selectList(namespace+"selectMycom", info);
 	}
 
 	
 
-//	@Test
+	@Test
 	public void testMyPointCount() {
 		String userId = "1";
 		when(session.selectOne(namespace+"MyPointCount", userId)).thenReturn(10);
@@ -246,7 +246,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"MyPointCount", userId);
 	}
 
-//	@Test
+	@Test
 	public void testSelectUserPoint() {
 		String userId = "1";
 		int currentPage = 1;
@@ -264,7 +264,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectMypoint", info);
 	}
 
-//	@Test
+	@Test
 	public void testSelectMyinqu() {
 		String userId = "1";
 		when(session.selectList(namespace+"selectMyinqu", userId)).thenReturn(Arrays.asList(mock));
@@ -273,7 +273,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectMyinqu", userId);
 	}
 
-//	@Test
+	@Test
 	public void testInsertBoard() {
 		when(session.insert(namespace + "insert", mock)).thenReturn(1);
 		int result = dao.insertBoard(mock);
@@ -281,7 +281,7 @@ public class BoardDAOTest {
 		verify(session).insert(namespace + "insert", mock);
 	}
 
-//	@Test
+	@Test
 	public void testUpdateBoard() {
 		when(session.update(namespace + "update", mock)).thenReturn(1);
 		int result = dao.updateBoard(mock);
@@ -289,7 +289,7 @@ public class BoardDAOTest {
 		verify(session).update(namespace + "update", mock);
 	}
 
-//	@Test
+	@Test
 	public void testDeleteBoard() {
 		String board_code = "b0001";
 		when(session.delete(namespace + "delete", board_code)).thenReturn(1);
@@ -298,7 +298,7 @@ public class BoardDAOTest {
 		verify(session).delete(namespace + "delete", board_code);
 	}
 
-//	@Test
+	@Test
 	public void testGetList() {
 		SearchCondition search = new SearchCondition();
 		int currentPage = 1;
@@ -312,7 +312,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectSearch",search);
 	}
 
-//	@Test
+	@Test
 	public void testGetRouteList() {
 		SearchCondition search = new SearchCondition();
 		int currentPage = 1;
@@ -326,7 +326,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace+"selectRouteSearch",search);
 	}
 
-//	@Test
+	@Test
 	public void testGetListCount() {
 		SearchCondition search = new SearchCondition();
 		when(session.selectOne(namespace+"selectSearchCount", search)).thenReturn(10);
@@ -336,7 +336,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"selectSearchCount", search);
 	}
 
-//	@Test
+	@Test
 	public void testGetRouteListCount() {
 		SearchCondition search = new SearchCondition();
 		when(session.selectOne(namespace+"selectSearchRouteCount", search)).thenReturn(10);
@@ -346,7 +346,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"selectSearchRouteCount", search);
 	}
 
-//	@Test
+	@Test
 	public void testSelectRoute() {
 		String boardCode = "b0001";
 		when(session.selectOne(namespace+"selectRoute", boardCode)).thenReturn(Rmock);
@@ -356,7 +356,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"selectRoute", boardCode);
 	}
 
-//	@Test
+	@Test
 	public void testInsertRoute() {
 		when(session.insert(namespace + "insertRoute", Rmock)).thenReturn(1);
 		int result = dao.insertRoute(Rmock);
@@ -364,7 +364,7 @@ public class BoardDAOTest {
 		verify(session).insert(namespace + "insertRoute", Rmock);
 	}
 
-//	@Test
+	@Test
 	public void testSelectMyBuyBoard() {
 		String userCode = "u0001";
 		when(session.selectList(namespace + "selectMyBuyBoard", userCode)).thenReturn(Arrays.asList(Rmock));
@@ -374,7 +374,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace + "selectMyBuyBoard", userCode);
 	}
 
-//	@Test
+	@Test
 	public void testLikeCount() {
 		String boardCode = "b0001";
 		when(session.selectOne(namespace + "LikeCount", boardCode)).thenReturn(10);
@@ -384,7 +384,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace + "LikeCount", boardCode);
 	}
 
-//	@Test
+	@Test
 	public void testArchCount() {
 		String boardCode = "b0001";
 		when(session.selectOne(namespace + "ArchCount", boardCode)).thenReturn(10);
@@ -394,7 +394,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace + "ArchCount", boardCode);
 	}
 
-//	@Test
+	@Test
 	public void testGetRouteBoardBySearch() {
 		  int currentPage = 1;
 		  String region = "서울";
@@ -416,7 +416,7 @@ public class BoardDAOTest {
 		  verify(session).selectList(namespace + "getRouteBoardBySearch", info);
 	}
 
-//	@Test
+	@Test
 	public void testGetTotalCountBySearch() {
 		 String region = "서울";
 		 String theme = "-1";
@@ -432,7 +432,7 @@ public class BoardDAOTest {
 		 verify(session).selectOne(namespace + "getTotalCountBySearch", info);
 	}
 
-//	@Test
+	@Test
 	public void testHomeRouteData() {
 		int boardRegion = 0;
 		when(session.selectList(namespace + "homeRouteData", boardRegion)).thenReturn(Arrays.asList(mock));
@@ -442,7 +442,7 @@ public class BoardDAOTest {
 		verify(session).selectList(namespace + "homeRouteData", boardRegion);
 	}
 
-//	@Test
+	@Test
 	public void testSelectInquiryCount() {
 		when(session.selectOne(namespace+"selectInquiryCount")).thenReturn(10);
 		int result = dao.selectInquiryCount();
@@ -451,7 +451,7 @@ public class BoardDAOTest {
 		verify(session).selectOne(namespace+"selectInquiryCount");
 	}
 
-//	@Test
+	@Test
 	public void testSelectInquiry() {
 		
 	    int currentPage = 1;      
@@ -467,7 +467,4 @@ public class BoardDAOTest {
 		
 		assertEquals(1, result.size());
 	}
-
-	
-	
   }
