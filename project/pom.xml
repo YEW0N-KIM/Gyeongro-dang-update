@@ -164,7 +164,13 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-		
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version> <!-- 또는 사용 중인 Spring 버전에 맞는 버전 -->
+		    <scope>provided</scope>
+		</dependency>
+				
 		
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
