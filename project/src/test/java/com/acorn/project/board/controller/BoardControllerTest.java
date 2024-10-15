@@ -2,18 +2,25 @@ package com.acorn.project.board.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyList;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-import javax.mail.Quota.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +30,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
@@ -36,8 +44,10 @@ import com.acorn.project.archive.domain.Archive;
 import com.acorn.project.archive.service.ArchiveServiceI;
 import com.acorn.project.board.domain.Board;
 import com.acorn.project.board.domain.BoardVO;
+import com.acorn.project.board.domain.Day;
 import com.acorn.project.board.domain.PagingHandler;
 import com.acorn.project.board.domain.RouteBoard;
+import com.acorn.project.board.domain.RouteBoardVO;
 import com.acorn.project.board.domain.SearchCondition;
 import com.acorn.project.board.service.BoardServiceI;
 import com.acorn.project.comment.domain.Comment;
@@ -51,8 +61,7 @@ import com.acorn.project.user.service.UserServiceI;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration   // Servlet의 ServletContext를 이용하기 위함
-@ContextConfiguration({   "file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"
-})
+@ContextConfiguration({   "file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 public class BoardControllerTest {
 
 	
@@ -471,36 +480,237 @@ public class BoardControllerTest {
 		verify(commentS).register(comment);
 	}
 
-	@Test
-	public void testImageDownload() {
-      
-	}
+//	@Test
+//	public void testImageDownload() {
+//      
+//	}
 
-	@Test
-	public void testRouteBoardList() {
-		
-	}
+   @Test
+    public void testRouteBoardList_WithSearchParameters() {
+        // Arrange
+        String region = "TestRegion";
+        String theme = "TestTheme";
+        String tourdays = "3";
+        int page = 1;
+
+        List<RouteBoard> mockRouteBoardList = new ArrayList<>();
+        mockRouteBoardList.add(new RouteBoard()); // Mock 데이터 추가
+
+        when(boardS.getRouteBoardBySearch(region, theme, tourdays, page)).thenReturn(mockRouteBoardList); // 모킹
+        when(boardS.selectTotalCount(0)).thenReturn(10); // 총 레코드 수 모킹
+        when(boardS.getTotalCountBySearch(region, theme, tourdays)).thenReturn(5); // 검색된 총 레코드 수 모킹
+
+        // Act
+        String viewName = control.routeBoardList(region, theme, tourdays, model, page); // 메서드 호출
+
+        // Assert
+        assertEquals("/board/route", viewName); // 반환된 뷰 이름 확인
+        verify(model).addAttribute("routeBoardList", mockRouteBoardList); // 모델에 routeBoardList 추가 확인
+        verify(model).addAttribute("type", 0); // 모델에 type 추가 확인
+    }
+
+    @Test
+    public void testRouteBoardList_WithoutSearchParameters() {
+        // Arrange
+        String region = "";
+        String theme = "";
+        String tourdays = "";
+        int page = 1;
+
+        List<RouteBoard> mockRouteBoardList = new ArrayList<>();
+        mockRouteBoardList.add(new RouteBoard()); // Mock 데이터 추가
+
+        when(boardS.getRouteBoardBySearch(null, null, null, page)).thenReturn(mockRouteBoardList); // 모킹
+        when(boardS.selectTotalCount(0)).thenReturn(10); // 총 레코드 수 모킹
+        when(boardS.getTotalCountBySearch(null, null, null)).thenReturn(5); // 검색된 총 레코드 수 모킹
+
+        // Act
+        String viewName = control.routeBoardList(region, theme, tourdays, model, page); // 메서드 호출
+
+        // Assert
+        assertEquals("/board/route", viewName); // 반환된 뷰 이름 확인
+        verify(model).addAttribute("routeBoardList", mockRouteBoardList); // 모델에 routeBoardList 추가 확인
+        verify(model).addAttribute("type", 0); // 모델에 type 추가 확인
+    }
 
 	@Test
 	public void testCreateRoute() {
+		user = new User(); RouteBoard rboard = new RouteBoard();
+		when(session.getAttribute("user")).thenReturn(user);
+		String result = control.createRoute(rboard, session, model);
+		assertEquals("board/createRouteForm", result);
 		
+		when(session.getAttribute("user")).thenReturn(null);
+		String result2 = control.createRoute(rboard, session, model);
+		assertEquals("redirect:/user/login.do", result2);
 	}
 
 	@Test
-	public void testCreateRoute_process() {
-		
-	}
+    public void testCreateRouteProcess_WithFile() throws Exception {
+        // Arrange
+        RouteBoardVO vo = new RouteBoardVO();
+        vo.setBoardCode("board123");
+        vo.setUserCode("user123");
+        vo.setNickname("testUser");
+        vo.setBoardTitle("Test Title");
+        vo.setBoardContent("Test Content");
+        vo.setBoardTheme(1);
+        vo.setBoardTourdays(5);
+        vo.setBoardWritedate("2023-10-15");
+        vo.setBoardViews(0);
+        vo.setBoardPoint(0);
+        vo.setBoardType(1);
+        vo.setBoardRegion(1);
+
+        List<Day> dayPlans = new ArrayList<>();
+        dayPlans.add(new Day(1, null, null)); // 하루 계획 예시 추가
+        when(session.getAttribute("dayPlans")).thenReturn(dayPlans); // 세션에 dayPlans 설정
+
+        MockMultipartFile file = new MockMultipartFile("boardImg", "testImage.jpg", "image/jpeg", "test content".getBytes());
+        vo.setBoardImg(file); // MultipartFile 설정
+
+        // Act
+        String result = control.createRoute_process(vo, session);
+
+        // Assert
+        assertEquals("redirect:/board/route", result); // 리다이렉트 결과 확인
+        verify(boardS).insertRoute(any(RouteBoard.class)); // insertRoute 메서드 호출 확인
+
+        // Clean up: 삭제된 파일 확인
+        File savedFile = new File("test/uploads/" + UUID.randomUUID() + ".jpg"); // 실제 파일 저장 경로 확인
+    }
+
+    @Test
+    public void testCreateRouteProcess_WithoutFile() throws Exception {
+        // Arrange
+        RouteBoardVO vo = new RouteBoardVO();
+        vo.setBoardCode("board123");
+        vo.setUserCode("user123");
+        vo.setNickname("testUser");
+        vo.setBoardTitle("Test Title");
+        vo.setBoardContent("Test Content");
+        vo.setBoardTheme(1);
+        vo.setBoardTourdays(5);
+        vo.setBoardWritedate("2023-10-15");
+        vo.setBoardViews(0);
+        vo.setBoardPoint(0);
+        vo.setBoardType(1);
+        vo.setBoardRegion(1);
+
+        List<Day> dayPlans = new ArrayList<>();
+        dayPlans.add(new Day(1, null, null)); // 하루 계획 예시 추가
+        when(session.getAttribute("dayPlans")).thenReturn(dayPlans); // 세션에 dayPlans 설정
+
+        // Act
+        String result = control.createRoute_process(vo, session);
+
+        // Assert
+        assertEquals("redirect:/board/route", result); // 리다이렉트 결과 확인
+        verify(boardS).insertRoute(any(RouteBoard.class)); // insertRoute 메서드 호출 확인
+    }
+	
+	@Test
+    public void testHandleDayPlans_AddNewDayPlan() {
+        // Arrange
+        Day newDay = new Day();
+        newDay.setDay(1); // 예시로 설정
+        when(session.getAttribute("dayPlans")).thenReturn(null); // 세션에 dayPlans가 없을 때
+
+        // Act
+        ResponseEntity<String> response = control.handleDayPlans(newDay, session);
+
+        // Assert
+        assertEquals("Successfully added or updated a day plan.", response.getBody());
+        verify(session).setAttribute(eq("dayPlans"), anyList()); // dayPlans가 세션에 설정되었는지 확인
+    }
+	
+	@Test
+    public void testHandleDayPlans_UpdateExistingDayPlan() {
+        // Arrange
+        Day existingDay = new Day();
+        existingDay.setDay(1); // 예시로 설정
+        List<Day> dayPlans = new ArrayList<>();
+        dayPlans.add(existingDay);
+        when(session.getAttribute("dayPlans")).thenReturn(dayPlans); // 세션에 기존 dayPlans가 있을 때
+
+        Day updatedDay = new Day();
+        updatedDay.setDay(1); // 동일한 day로 업데이트
+
+        // Act
+        ResponseEntity<String> response = control.handleDayPlans(updatedDay, session);
+
+        // Assert
+        assertEquals("Successfully added or updated a day plan.", response.getBody());
+        assertEquals(1, dayPlans.size()); // 크기가 동일해야 함
+        assertEquals(updatedDay, dayPlans.get(0)); // 업데이트된 내용 확인
+    }
 
 	@Test
-	public void testHandleDayPlans() {
-	}
+    public void testShowRouteBoard_UserLoggedIn() throws Exception {
+        // Arrange
+        String boardCode = "board123";
+        User mockUser = new User();
+        mockUser.setUserCode("user123");
+        when(session.getAttribute("user")).thenReturn(mockUser); // 로그인 상태 설정
+        when(request.getRequestURL()).thenReturn(new StringBuffer("http://localhost:8080/route/board123")); // 요청 URL 설정
+        RouteBoard mockRouteBoard = new RouteBoard();
+        mockRouteBoard.setUserCode("user123"); // 작성자 코드 설정
+        when(boardS.selectRoute(boardCode)).thenReturn(mockRouteBoard); // 모킹
+        when(boardS.likeCount(boardCode)).thenReturn(5); // 모킹
+        when(boardS.archCount(boardCode)).thenReturn(3); // 모킹
+        when(commentS.getCommentByCode(boardCode)).thenReturn(new ArrayList<>()); // 모킹
+        when(commentS.count(boardCode)).thenReturn(0); // 모킹
 
-	@Test
-	public void testShowRouteBoard() {
-	}
+        // Act
+        String viewName = control.showRouteBoard(boardCode, model, request, session);
+
+        // Assert
+        assertEquals("board/routePost", viewName); // 반환된 뷰 이름 확인
+        verify(model).addAttribute("routeBoard", mockRouteBoard); // 모델에 routeBoard 추가 확인
+        verify(model).addAttribute("like", 5); // 좋아요 수 추가 확인
+        verify(model).addAttribute("arch", 3); // 아카이브 수 추가 확인
+        verify(model).addAttribute("message", "O"); // 메시지 확인
+        verify(model).addAttribute("comments", new ArrayList<>()); // 댓글 추가 확인
+        verify(model).addAttribute("count", 0); // 댓글 수 추가 확인
+    }
+
+    @Test
+    public void testShowRouteBoard_UserNotLoggedIn() throws Exception {
+        // Arrange
+        String boardCode = "board123";
+        when(session.getAttribute("user")).thenReturn(null); // 로그인하지 않은 상태 설정
+        when(request.getRequestURL()).thenReturn(new StringBuffer("http://localhost:8080/route/board123")); // 요청 URL 설정
+        RouteBoard mockRouteBoard = new RouteBoard();
+        when(boardS.selectRoute(boardCode)).thenReturn(mockRouteBoard); // 모킹
+        when(boardS.likeCount(boardCode)).thenReturn(5); // 모킹
+        when(boardS.archCount(boardCode)).thenReturn(3); // 모킹
+        when(commentS.getCommentByCode(boardCode)).thenReturn(new ArrayList<>()); // 모킹
+        when(commentS.count(boardCode)).thenReturn(0); // 모킹
+
+        // Act
+        String viewName = control.showRouteBoard(boardCode, model, request, session);
+
+        // Assert
+        assertEquals("board/routePost", viewName); // 반환된 뷰 이름 확인
+        verify(model).addAttribute("routeBoard", mockRouteBoard); // 모델에 routeBoard 추가 확인
+        verify(model).addAttribute("like", 5); // 좋아요 수 추가 확인
+        verify(model).addAttribute("arch", 3); // 아카이브 수 추가 확인
+        verify(model).addAttribute("comments", new ArrayList<>()); // 댓글 추가 확인
+        verify(model).addAttribute("count", 0); // 댓글 수 추가 확인
+    }
 
 	@Test
 	public void testRouteComment() {
+		user = new User();
+		when(session.getAttribute("user")).thenReturn(user);
+		when(commentS.register(comment)).thenReturn(10);
+		ResponseEntity<Map<String, Object>> result = control.routeComment("b0001", comment, session);
+		assertEquals("/project/board/route/b0001", result.getBody().get("redirect"));
+		verify(commentS).register(comment);
+		
+		when(session.getAttribute("user")).thenReturn(null);
+		ResponseEntity<Map<String, Object>> result2 = control.routeComment("b0001", comment, session);
+		assertEquals("/project/user/login.do", result2.getBody().get("redirect"));
 	}
 
 }
