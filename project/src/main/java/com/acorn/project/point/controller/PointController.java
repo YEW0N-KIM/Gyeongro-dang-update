@@ -224,11 +224,12 @@ public class PointController {
                                @RequestParam String writerCode,
                                HttpSession session) throws Exception {
        User user = (User) session.getAttribute("user");
-       String userCode = user.getUserCode();
+       
        User writer = userService.getUserByCode(writerCode);
        int result = 0;
        
        if (user != null) {
+    	   String userCode = user.getUserCode();
            if (user.getUserPoint() >= pointAmount) {
                result = service.buyBoard(userCode, boardCode, pointAmount);
                if (result > 0) {
