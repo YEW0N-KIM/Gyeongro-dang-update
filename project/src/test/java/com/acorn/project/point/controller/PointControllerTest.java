@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -29,6 +30,9 @@ public class PointControllerTest {
 	@Mock
 	HttpSession session;
 	
+	@InjectMocks
+	PointController control;
+	
 	private User user;
 	
 	@Test
@@ -46,6 +50,7 @@ public class PointControllerTest {
 
 	@Test
 	public void testChargeProcess() {
+		user = new User();
 	}
 
 	@Test

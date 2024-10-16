@@ -78,7 +78,7 @@ public class TourController {
         return "/tour/tourDetail";
     }
 
-    private void addTourListToModel2(String numOfRows, String pageNo, String area, String arrange, String mapX,
+    protected void addTourListToModel2(String numOfRows, String pageNo, String area, String arrange, String mapX,
                                      String mapY, Model model) throws IOException {
         List<?> tourList = null;
 
@@ -103,7 +103,7 @@ public class TourController {
         System.out.println(tourList);
     }
 
-    private void addTourInfoToModel(String contentId, String contentTypeId, Model model) throws IOException {
+    protected void addTourInfoToModel(String contentId, String contentTypeId, Model model) throws IOException {
         try {
             model.addAttribute("tourInfo",
                     homeService.extractTourInfo(homeService.getTourInfo(contentId, contentTypeId)));
@@ -114,7 +114,7 @@ public class TourController {
         }
     }
 
-    private List<TourDTO1> getTourList(String numOfRows, String pageNo, String area) {
+    protected List<TourDTO1> getTourList(String numOfRows, String pageNo, String area) {
         try {
             return homeService.extractTours(homeService.getDataTour(numOfRows, pageNo, area));
         } catch (IOException | JSONException e) {
@@ -123,7 +123,7 @@ public class TourController {
         }
     }
 
-    private String getOrDefault(String value, String defaultValue, HttpSession session, String attributeName) {
+    protected String getOrDefault(String value, String defaultValue, HttpSession session, String attributeName) {
         if (value == null || value.isEmpty()) {
             Object sessionValue = session.getAttribute(attributeName);
             return (sessionValue != null) ? sessionValue.toString() : defaultValue;
@@ -131,7 +131,7 @@ public class TourController {
         return value;
     }
 
-    private int calculateTotalPages(int totalItems, int itemsPerPage) {
+    protected int calculateTotalPages(int totalItems, int itemsPerPage) {
         return (int) Math.ceil((double) totalItems / itemsPerPage);
     }
 }
