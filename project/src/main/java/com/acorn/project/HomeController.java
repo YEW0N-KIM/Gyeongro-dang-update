@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import com.acorn.project.board.domain.RouteBoard;
 import com.acorn.project.board.service.BoardService;
+import com.acorn.project.board.service.BoardServiceI;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class HomeController {
 	
 	@Autowired
-	private BoardService boardService;
+	private BoardServiceI boardService;
 
     @GetMapping(value = "/", produces = "text/html;charset=UTF-8")
     public String main(Model model) { 
